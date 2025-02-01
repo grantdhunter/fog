@@ -51,7 +51,11 @@ kubectl label namespace metallb-system pod-security.kubernetes.io/warn=privilege
 ```sh
 helm repo add traefik https://traefik.github.io/charts
 kubectl create secret generic digitalocean-api-key --from-literal=token=$DIGITAL_OCEAN_API_TOKEN
-helm install --create-namespace --namespace traefik traefik traefik/traefik --values traefik/values.yaml
+helm install --create-namespace --namespace traefik traefik traefik/traefik\
+             --values traefik/values.yaml \
+             --set certificatesResolvers.letsencrypt.acme.email=$ACME_EMAIL \
+             --set 'extraObjects[0].stringData.password'=$TRAEFIK_ADMIN_PASSWORD
+
 ```
 
 ### Postgres
