@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: rook-ceph-mgr-dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`fog.goatchat.ca`) && PathPrefix(`/fog/ceph`)
+    kind: Rule
+    middlewares:
+     - name: ceph-stripprefix
+    services:
+    - kind: Service
+      name: rook-ceph-mgr-dashboard
+      port: 7000
+  tls:
+    certResolver: letsencrypt
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: ceph-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /fog/ceph

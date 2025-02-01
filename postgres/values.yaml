@@ -1,0 +1,22 @@
+instanceSize: 5Gi
+backupsSize: 5Gi
+
+patroni:
+  dynamicConfiguration:
+    postgresql:
+      pg_hba:
+        - "host all all all scram-sha-256"
+
+users:
+  - name: grant
+    databases:
+      - postgres
+      - synapse
+    options: "SUPERUSER LOGIN"
+  - name: synapse
+    databases:
+      - synapse
+    options: "LOGIN"
+    
+    
+  
