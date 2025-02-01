@@ -1,27 +1,35 @@
-# Talos Cluster
+# Fog 
+Like the cloud but local.
 
-## Add node to talos cluster
+## Required tools 
+- talosctl (https://www.talos.dev/v1.9/talos-guides/install/talosctl/)
+- kubectl (https://kubernetes.io/docs/tasks/tools/#kubectl)
+- bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/)
+
+## Talos Cluster
+
+### Add node to talos cluster
 ```sh
 talosctl apply-config --insecure -n 192.168.1.38 --file worker.yaml 
 talosctl apply-config --insecure -n 192.168.1.39 --file worker.yaml 
 talosctl apply-config --insecure -n 192.168.1.43 --file controlplane.yaml 
 ```
-## Update context
+### Update context
 ```sh 
 talosctl config node 192.168.1.38 192.168.1.43 192.168.1.39
 ```
 
-## Kubeconfig
+### Kubeconfig
 ```sh
 talosctl kubeconfig --nodes 192.168.1.43
 ```
-## metrics
+### metrics
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 ```
-## Ceph 
+### Ceph 
 ```sh
 helm repo add rook-release https://charts.rook.io/release
 helm install --create-namespace --namespace rook-ceph rook-ceph rook-release/rook-ceph
@@ -30,7 +38,7 @@ helm install --create-namespace --namespace rook-ceph rook-ceph-cluster --set op
 
 ```
 
-## Metallb
+### Metallb
 ```sh
 helm repo add metallb https://metallb.github.io/metallb
 helm install --create-namespace --namespace metallb-system metallb metallb/metallb
@@ -39,14 +47,14 @@ kubectl label namespace metallb-system pod-security.kubernetes.io/audit=privileg
 kubectl label namespace metallb-system pod-security.kubernetes.io/warn=privileged
 ```
 
-## Traefik
+### Traefik
 ```sh
 helm repo add traefik https://traefik.github.io/charts
 kubectl create secret generic digitalocean-api-key --from-literal=token=$DIGITAL_OCEAN_API_TOKEN
 helm install --create-namespace --namespace traefik traefik traefik/traefik --values traefik/values.yaml
 ```
 
-## Postgres
+### Postgres
 ```sh 
 helm install pgo --create-namespace --namespace postgres-operator ../postgres-operator/helm/install --values postgres/operator-values.yaml
 helm install postgres --create-namespace --namespace datastore ../postgres-operator/helm/postgres --values postgres/values.yaml
@@ -55,12 +63,12 @@ helm install postgres --create-namespace --namespace datastore ../postgres-opera
 kubectl get secrets -n datastore postgres-pguser-synapse -o json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.ownerReferences) | .metadata.creationTimestamp=null,.metadata.namespace="goatchat"' | kubectl apply -f -
 ```
 
-## Mariadb
+### Mariadb
 ```sh
 helm install --create-namespace --namespace datastore mariadb  oci://registry-1.docker.io/bitnamicharts/mariadb --values mariadb/values.yaml
 ```
 
-## Goatchat 
+## Goatchat (matrix)
 ### Synapse
 #### Setup db
 delete synapse db and recreate with correct locale 
