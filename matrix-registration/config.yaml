@@ -1,0 +1,47 @@
+server_location: 'http://goatchat-matrix-synapse:8008'
+server_name: 'goatchat.ca'
+registration_shared_secret: #replace with shared registration secret
+admin_api_shared_secret: # replace with admin api shared secret
+base_url: '/gate' # e.g. '/element' for https://example.tld/element/register
+client_redirect: 'https://app.element.io/#/login'
+client_logo: 'static/images/element-logo.png' # use '{cwd}' for current working directory
+db: 'sqlite:///{cwd}db.sqlite3'
+host: '0.0.0.0'
+port: 5000
+rate_limit: ["100 per day", "10 per minute"]
+allow_cors: false
+ip_logging: false
+logging:
+  disable_existing_loggers: false
+  version: 1
+  root:
+    level: DEBUG
+    handlers: [console]
+  formatters:
+    brief:
+      format: '%(name)s - %(levelname)s - %(message)s'
+    precise:
+      format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: brief
+      stream: ext://sys.stdout
+    file:
+      class: logging.handlers.RotatingFileHandler
+      formatter: precise
+      level: INFO
+      filename: m_reg.log
+      maxBytes: 10485760 # 10MB
+      backupCount: 3
+      encoding: utf8
+# password requirements
+password:
+  min_length: 8
+# username requirements
+username:
+  validation_regex: [] #list of regexes that the selected username must match.        Example: '[a-zA-Z]\.[a-zA-Z]'
+  invalidation_regex: ['(admin|support|password)'] #list of regexes that the selected username must NOT match.  Example: '(admin|support)'
+
+

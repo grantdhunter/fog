@@ -108,12 +108,57 @@ helm upgrade --create-namespace \
 ```
 
 ### Install Matrix Registration
+TODO: make this a helm app or replace with something better
 ```sh
 kubeclt apply -k matrix-registration
 
 ```
 ## Ghost Blogs
 ### kngot
+I got tired of fighting the docker container so I manually overrode the `config.production.json`
+which looks like 
+```
+{
+  "url": <url>,
+  "server": {
+    "port": 2368,
+    "host": "::"
+  },
+  "mail": {
+    "transport": "SMTP",
+      "options": {
+          "host": "smtp.sendgrid.net",
+          "service": "SendGrid",
+          "port": 465,
+          "secure": true,
+          "tls": {
+              "requireTLS": true
+          }
+      }
+  },
+  "logging": {
+    "transports": [
+      "file",
+      "stdout"
+    ]
+  },
+  "process": "local",
+  "paths": {
+    "contentPath": "/opt/bitnami/ghost/content"
+  },
+  "database": {
+    "client": "mysql",
+    "connection": {
+      "host": "mariadb.datastore.svc.cluster.local",
+      "port": 3306,
+      "user": <user>,
+      "password": <password>,
+      "database": <database>
+    }
+  }
+}
+```
+
 #### Create db and user
 ```sh
 CREATE DATABASE kgnot_ghost;
