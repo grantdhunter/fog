@@ -100,6 +100,11 @@ kubectl create secret generic goatchatca-signingkey --from-literal=signing.key=$
 helm upgrade --create-namespace --namespace goatchat goatchat ananace-charts/matrix-synapse --values synapse/values.yaml --install
 ```
 
+### Install Matrix Registration
+```sh
+kubeclt apply -k matrix-registration
+
+```
 ## Ghost Blogs
 ### kngot
 #### Create db and user
