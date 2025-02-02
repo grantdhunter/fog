@@ -10,9 +10,9 @@ Like the cloud but local.
 
 ### Add node to talos cluster
 ```sh
-talosctl apply-config --insecure -n 192.168.1.38 --file worker.yaml 
-talosctl apply-config --insecure -n 192.168.1.39 --file worker.yaml 
-talosctl apply-config --insecure -n 192.168.1.43 --file controlplane.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.38 --file worker.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.39 --file worker.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.43 --file controlplane.yaml 
 ```
 ### Update context
 ```sh 
@@ -97,7 +97,14 @@ helm repo add ananace-charts https://ananace.gitlab.io/charts
 
 kubectl create ns goatchat
 kubectl create secret generic goatchatca-signingkey --from-literal=signing.key=$GOATCHAT_SYNAPSE_SIGNING_KEY
-helm upgrade --create-namespace --namespace goatchat goatchat ananace-charts/matrix-synapse --values synapse/values.yaml --install
+helm upgrade --create-namespace \
+             --namespace goatchat \
+             goatchat ananace-charts/matrix-synapse \
+             --set config.macaroonSecretKey=$GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY \
+             --set config.registrationSharedSecret=$GOATCHAT_REGISTRATION_SHARED_SECRET \
+             --set extraConfig.email.smtp_pass=$GOATCHAT_SMTP_PASSWORD \
+             --values synapse/values.yaml \
+             --install
 ```
 
 ### Install Matrix Registration
