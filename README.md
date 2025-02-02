@@ -124,7 +124,11 @@ grant all privileges on kgnot_ghost.* to kgnot_ghost@'10.%.%.%' identified by '$
 kubectl create secret generic ghost-kgnot-user-secret --from-literal=ghost-password=$KGNOT_GHOST_USER_PASSWORD
 kubectl create secret generic ghost-kgnot-db-secret --from-literal=mysql-password=$KGNOT_MYSQL_PASSWORD
 kubectl create secret generic kgnot-smtp-password --from-literal=smtp-password=$KNGOT_SMTP_PASSWORD
-helm install --create-namespace --namespace ghost kgnot-ghost oci://registry-1.docker.io/bitnamicharts/ghost --values kgnot/values.yaml
+helm install --create-namespace \
+             --namespace ghost \
+             kgnot-ghost oci://registry-1.docker.io/bitnamicharts/ghost \
+             --set ghostUsername=$KGNOT_GHOST_USER_NAME \
+             --values kgnot/values.yaml
 ```
 
 ### 53ll
@@ -138,6 +142,10 @@ grant all privileges on 53ll_ghost.* to 53ll_ghost@'10.%.%.%' identified by '$GH
 kubectl create secret generic ghost-53ll-user-secret --from-literal=ghost-password=$GHOST_53LL_USER_PASSWORD
 kubectl create secret generic ghost-53ll-db-secret --from-literal=mysql-password=$GHOST_53LL_MYSQL_PASSWORD
 kubectl create secret generic 53ll-smtp-password --from-literal=smtp-password=$GHOST_53LL_SMTP_PASSWORD
-helm install --create-namespace --namespace ghost 53ll-ghost oci://registry-1.docker.io/bitnamicharts/ghost --values 53ll/values.yaml
+helm install --create-namespace \
+             --namespace ghost \
+             53ll-ghost oci://registry-1.docker.io/bitnamicharts/ghost \
+             --set ghostUsername=$GHOST_53LL_USER_NAME \
+             --values 53ll/values.yaml
 ```
 
