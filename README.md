@@ -2,17 +2,24 @@
 Like the cloud but local.
 
 ## Required tools 
-- talosctl (https://www.talos.dev/v1.9/talos-guides/install/talosctl/)
-- kubectl (https://kubernetes.io/docs/tasks/tools/#kubectl)
-- bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/)
+- talosctl (https://www.talos.dev/v1.9/talos-guides/install/talosctl/ )
+- kubectl (https://kubernetes.io/docs/tasks/tools/#kubectl )
+- bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/ )
 
 ## Talos Cluster
-
+### Generate config 
+```sh
+bws secret get <talos-secret-id> -o json | jq .value --raw-output > talos/secrets.yaml
+talosctl gen config fog  https://192.168.1.43:6443 \
+         --with-secrets talos/secrets.yaml \
+         --config-patch @talos/machine_patch.yaml \
+         --config-patch-control-plane @talos/cluster_patch.yaml 
+```
 ### Add node to talos cluster
 ```sh
-talosctl apply-config [--insecure] -n 192.168.1.38 --file worker.yaml 
-talosctl apply-config [--insecure] -n 192.168.1.39 --file worker.yaml 
-talosctl apply-config [--insecure] -n 192.168.1.43 --file controlplane.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.38 --file talos/worker.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.39 --file talos/worker.yaml 
+talosctl apply-config [--insecure] -n 192.168.1.43 --file talos/controlplane.yaml 
 ```
 ### Update context
 ```sh 
