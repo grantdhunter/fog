@@ -18,13 +18,12 @@ bws secret get <talos-secret-id> -o json | jq .value --raw-output > talos/secret
 talosctl gen config fog  https://192.168.1.43:6443 \
          --with-secrets talos/secrets.yaml \
          --config-patch @talos/machine_patch.yaml \
-         --config-patch @talos/cluster_patch.yaml 
+         --config-patch-control-plane @talos/cluster_patch.yaml \
+         --config-patch-control-plane @talos/remove_node_label_patch.yaml
 ```
 ### Add node to talos cluster
 ```sh
-talosctl apply-config [--insecure] -n 192.168.1.38 --file talos/worker.yaml 
-talosctl apply-config [--insecure] -n 192.168.1.39 --file talos/worker.yaml 
-talosctl apply-config [--insecure] -n 192.168.1.43 --file talos/controlplane.yaml 
+talosctl apply-config [--insecure] -n <ips> controlplane.yaml 
 ```
 ### Update context
 ```sh 
