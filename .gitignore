@@ -1,4 +1,11 @@
+# generated talos files
+controlplane.yaml
+worker.yaml
+talosconfig
+
+# talos secrets
 talos/secrets.yaml
 
+# ghost blog nonsense
 kgnot/config.production.json
 53ll/config.production.json
