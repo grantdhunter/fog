@@ -7,13 +7,18 @@ Like the cloud but local.
 - bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/ )
 
 ## Talos Cluster
+### Machine check list
+Using refurbished hardware is an adventure in configuration, make sure some things are standard before starting.
+- Secure boot is off 
+- BIOS password disabled
+- Enable restore after power outage
 ### Generate config 
 ```sh
 bws secret get <talos-secret-id> -o json | jq .value --raw-output > talos/secrets.yaml
 talosctl gen config fog  https://192.168.1.43:6443 \
          --with-secrets talos/secrets.yaml \
          --config-patch @talos/machine_patch.yaml \
-         --config-patch-control-plane @talos/cluster_patch.yaml 
+         --config-patch @talos/cluster_patch.yaml 
 ```
 ### Add node to talos cluster
 ```sh
@@ -52,6 +57,8 @@ helm install --create-namespace --namespace metallb-system metallb metallb/metal
 kubectl label namespace metallb-system pod-security.kubernetes.io/enforce=privileged
 kubectl label namespace metallb-system pod-security.kubernetes.io/audit=privileged
 kubectl label namespace metallb-system pod-security.kubernetes.io/warn=privileged
+kubectl -n metallb-system apply  -f metallb/ipaddresspool.yaml 
+
 ```
 
 ### Traefik
