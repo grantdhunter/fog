@@ -94,7 +94,8 @@ kubectl get secrets -n datastore postgres-pguser-synapse -o json | jq 'del(.meta
 
 ### Mariadb
 ```sh
-helm install --create-namespace --namespace datastore mariadb  oci://registry-1.docker.io/bitnamicharts/mariadb --values mariadb/values.yaml
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install --create-namespace --namespace datastore mariadb  bitnami/mariadb --values mariadb/values.yaml
 ```
 
 ## Goatchat (matrix)
@@ -136,6 +137,13 @@ helm upgrade --create-namespace \
 TODO: make this a helm app or replace with something better
 ```sh
 kubeclt apply -k matrix-registration
+helm upgrade --create-namespace \
+             --namespace goatchat \
+             gate ./matrix-registration \
+             --set registrationSharedSecret=$GOATCHAT_REGISTRATION_SHARED_SECRET \
+             --set adminApiSharedSecret=$GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET \
+             --values matrix-registration/values-overrides.yaml \
+             --install
 
 ```
 ## Ghost Blogs
@@ -195,7 +203,7 @@ kubectl create secret generic ghost-kgnot-db-secret --from-literal=mysql-passwor
 kubectl create secret generic kgnot-smtp-password --from-literal=smtp-password=$KNGOT_SMTP_PASSWORD
 helm upgrade --create-namespace \
              --namespace ghost \
-             kgnot-ghost oci://registry-1.docker.io/bitnamicharts/ghost \
+             kgnot-ghost bitnami/ghost \
              --set ghostUsername=$KGNOT_GHOST_USER_NAME \
              --values kgnot/values.yaml \
              --install
@@ -214,7 +222,7 @@ kubectl create secret generic ghost-53ll-db-secret --from-literal=mysql-password
 kubectl create secret generic 53ll-smtp-password --from-literal=smtp-password=$GHOST_53LL_SMTP_PASSWORD
 helm upgrade --create-namespace \
              --namespace ghost \
-             53ll-ghost oci://registry-1.docker.io/bitnamicharts/ghost \
+             53ll-ghost bitnami/ghost \
              --set ghostUsername=$GHOST_53LL_USER_NAME \
              --values 53ll/values.yaml \
              --install
