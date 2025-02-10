@@ -33,6 +33,9 @@ externalDatabase:
 updateStrategy:
   type: Recreate
 
+service:
+  type: ClusterIP
+  
 ingress:
   enabled: true
   hostname: kgnot.ca

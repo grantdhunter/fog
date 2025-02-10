@@ -33,6 +33,8 @@ externalDatabase:
 updateStrategy:
   type: Recreate
 
+service:
+  type: ClusterIP    
 ingress:
   enabled: true
   hostname: 53ll.ca
