@@ -64,12 +64,10 @@ helm install --create-namespace --namespace rook-ceph rook-ceph-cluster --set op
 ### Metallb
 ```sh
 helm repo add metallb https://metallb.github.io/metallb
-helm install --create-namespace --namespace metallb-system metallb metallb/metallb
-kubectl label namespace metallb-system pod-security.kubernetes.io/enforce=privileged
-kubectl label namespace metallb-system pod-security.kubernetes.io/audit=privileged
-kubectl label namespace metallb-system pod-security.kubernetes.io/warn=privileged
-kubectl -n metallb-system apply  -f metallb/ipaddresspool.yaml
-
+helm upgrade --create-namespace \
+             --namespace metallb-system \
+             metallb ./metallb \
+             --install
 ```
 
 ### Traefik
@@ -136,7 +134,6 @@ helm upgrade --create-namespace \
 ### Install Matrix Registration
 TODO: make this a helm app or replace with something better
 ```sh
-kubeclt apply -k matrix-registration
 helm upgrade --create-namespace \
              --namespace goatchat \
              gate ./matrix-registration \
@@ -222,7 +219,7 @@ kubectl create secret generic ghost-53ll-db-secret --from-literal=mysql-password
 kubectl create secret generic 53ll-smtp-password --from-literal=smtp-password=$GHOST_53LL_SMTP_PASSWORD
 helm upgrade --create-namespace \
              --namespace ghost \
-             53ll-ghost bitnami/ghost \
+             ghost-53ll bitnami/ghost \
              --set ghostUsername=$GHOST_53LL_USER_NAME \
              --values 53ll/values.yaml \
              --install

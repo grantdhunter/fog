@@ -1,0 +1,109 @@
+repositories:
+  - name: rook-release
+    url:  https://charts.rook.io/release
+  # - name: metallb
+  #   url: https://metallb.github.io/metallb
+  - name: traefik
+    url: https://traefik.github.io/charts
+  - name: ananace-charts
+    url: https://ananace.gitlab.io/charts
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: crunchydata
+    url: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
+releases:
+  # networking
+  - name: metallb
+    namespace: metallb-system
+    createNamespace: true
+    chart: ./metallb
+  - name: traefik
+    namespace: traefik
+    createNamespace: true
+    chart: traefik/traefik
+    values:
+      - ./traefik/values.yaml
+    setString:
+      - name: certificatesResolvers.letsencrypt.acme.email
+        value: {{ requiredEnv "ACME_EMAIL" }}
+      - name: extraObjects[0].stringData.password
+        value: {{ requiredEnv "TRAEFIK_ADMIN_PASSWORD" }}
+  # storage infrastructure
+  - name: rook-ceph
+    namespace: rook-ceph
+    createNamespace: true
+    chart: rook-release/rook-ceph
+  - name: rook-ceph-cluster
+    namespace: rook-ceph
+    createNamespace: true
+    chart: rook-release/rook-ceph-cluster
+    values:
+      - ./rook-ceph-cluster/values.yaml
+    set:
+      - name: operatorNamespace
+        value: rook-ceph
+  # data storage
+  - name: pgo
+    namespace: postgres-operator
+    createNamespace: true
+    chart: crunchydata/pgo
+    values:
+      - ./postgres/operator-values.yaml
+  - name: postgres
+    namespace: datastore
+    createNamespace: true
+    chart: crunchydata/postgrescluster
+    values:
+      - postgres/values.yaml
+  - name: mariadb
+    namespace: datastore
+    createNamespace: true
+    chart: bitnami/mariadb
+    values:
+      - mariadb/values.yaml
+    setString:
+      - name: auth.rootPassword
+        value: {{ requiredEnv "MARIADB_ROOT_PASSWORD" }}
+  # goatchat matrix
+  - name: goatchat
+    namespace: goatchat
+    createNamespace: true
+    chart: ananace-charts/matrix-synapse
+    values:
+      - ./synapse/values.yaml
+    setString:
+      - name: config.macaroonSecretKey
+        value: {{ requiredEnv "GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY" }}
+      - name: config.registrationSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET" }}
+      - name: extraConfig.email.smtp_pass
+        value: {{ requiredEnv "GOATCHAT_SMTP_PASSWORD" }}
+  - name: gate
+    namespace: goatchat
+    createNamespace: true
+    chart: ./matrix-registration
+    values:
+      - ./matrix-registration/values-overrides.yaml
+    setString:
+      - name: registrationSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET"}}
+      - name: adminApiSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET"}}
+  - name: kgnot-ghost
+    namespace: ghost
+    createNamespace: true
+    chart: bitnami/ghost
+    values:
+      - ./kgnot/values.yaml
+    setString:
+      - name: ghostUsername
+        value: {{ requiredEnv "KGNOT_GHOST_USER_NAME" }}
+  - name: ghost-53ll
+    namespace: ghost
+    createNamespace: true
+    chart: bitnami/ghost
+    values:
+      - ./53ll/values.yaml
+    setString:
+      - name: ghostUsername
+        value: {{ requiredEnv "GHOST_53LL_USER_NAME" }}
