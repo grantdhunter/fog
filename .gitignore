@@ -6,6 +6,10 @@ talosconfig
 # talos secrets
 talos/secrets.yaml
 
+#helm
+*/charts/*
+
 # ghost blog nonsense
 kgnot/config.production.json
 53ll/config.production.json
+
