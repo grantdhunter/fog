@@ -4,6 +4,8 @@ Like the cloud but local.
 ## Required tools
 - talosctl (https://www.talos.dev/v1.9/talos-guides/install/talosctl/ )
 - kubectl (https://kubernetes.io/docs/tasks/tools/#kubectl )
+- helm (https://helm.sh/ )
+- helmfile (https://helmfile.readthedocs.io/en/latest/ )
 - bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/ )
 
 ## Talos Cluster
