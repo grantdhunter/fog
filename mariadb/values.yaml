@@ -1,2 +1,6 @@
 persistent:
   size: 5Gi
+
+primary:
+  resourcesPreset: micro
+      

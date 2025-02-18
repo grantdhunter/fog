@@ -2,16 +2,16 @@ version: 0.170.1
 dependencies:
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.1.12
+  version: 22.1.14
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.1.12
+  version: 22.1.14
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
-  version: 20.2.2
+  version: 20.2.4
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.11.2
+  version: 3.11.3
 - name: pgo
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.2
@@ -27,5 +27,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.3.0
-digest: sha256:6c1bc28429ca833156132a3ec3ac797579e248ea38c48b4f0d8c6be1b723f584
-generated: "2025-02-10T18:18:42.189759385-07:00"
+digest: sha256:bab2e6d61d07eebd298d9f97a597cef9da761e801eb08cb505ce3436ae860d77
+generated: "2025-02-17T21:54:44.89035815-07:00"
