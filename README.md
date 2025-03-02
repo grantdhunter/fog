@@ -58,6 +58,11 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ```
 
 ### Apply and upgrade
+check for updates:
+```sh
+bws run 'helmfile deps'
+```
+apply changes:
 ```sh
 bws run 'helmfile apply'
 ```
