@@ -1,5 +1,5 @@
-instanceSize: 5Gi
-backupsSize: 5Gi
+instanceSize: 10Gi
+backupsSize: 10Gi
 
 patroni:
   dynamicConfiguration:
