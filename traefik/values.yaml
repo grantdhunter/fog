@@ -1,6 +1,3 @@
-image:
-  tag: v3.3.2
-
 deployment:
   initContainers:
     - name: volume-permissions
@@ -16,9 +13,9 @@ env:
      secretKeyRef:
        name: digitalocean-api-key
        key: token
- # TODO: add once v3.3 is released
- # - name: TRAEFIK_API_BASEPATH
- #   value: /fog/traefik
+
+additionalArguments:
+ - "--api.basePath=/fog/traefik"
 
 persistence:
   enabled: true
@@ -26,7 +23,7 @@ persistence:
 ingressRoute:
   dashboard:
     enabled: true
-    matchRule: Host(`fog.goatchat.ca`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    matchRule: Host(`fog.goatchat.ca`) && (PathPrefix(`/fog/traefik/dashboard`) || PathPrefix(`/fog/traefik/api`))
     entryPoints: ["websecure"]
     middlewares:
       - name: traefik-dashboard-auth
