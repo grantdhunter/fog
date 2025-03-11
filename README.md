@@ -72,6 +72,11 @@ bws run 'helmfile apply'
 kubectl label namespace rook-ceph pod-security.kubernetes.io/enforce=privileged
 ```
 
+#### k8up
+This requires some CRDs which can be installed via:
+```sh
+kubectl apply -f https://github.com/k8up-io/k8up/releases/download/k8up-4.8.4/k8up-crd.yaml --server-side
+```
 #### Traefik
 ```sh
 kubectl create secret generic digitalocean-api-key --from-literal=token=$DIGITAL_OCEAN_API_TOKEN

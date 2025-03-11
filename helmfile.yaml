@@ -11,6 +11,10 @@ repositories:
     url: https://charts.bitnami.com/bitnami
   - name: crunchydata
     url: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
+  - name: immich
+    url: https://immich-app.github.io/immich-charts
+  - name: k8up-io
+    url: https://k8up-io.github.io/k8up
 releases:
   # networking
   - name: metallb
@@ -89,6 +93,8 @@ releases:
         value: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET"}}
       - name: adminApiSharedSecret
         value: {{ requiredEnv "GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET"}}
+
+  # ghost blogs
   - name: kgnot-ghost
     namespace: ghost
     createNamespace: true
@@ -107,3 +113,37 @@ releases:
     setString:
       - name: ghostUsername
         value: {{ requiredEnv "GHOST_53LL_USER_NAME" }}
+
+  # backup
+  - name: k8up
+    namespace: k8up
+    createNamespace: true
+    chart: k8up-io/k8up
+  # backups
+  - name: k8up-backup
+    namespace: ghost
+    chart: ./k8up-backup
+    createNamespace: true    
+    values:
+      - ./k8up-backup/values_override.yaml
+    setString:
+      - name: credentials.id
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+      - name: credentials.key
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+      - name: repoPassword
+        value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
+  - name: goatchat-backup
+    namespace: goatchat
+    chart: ./k8up-backup
+    createNamespace: true    
+    values:
+      - ./k8up-backup/values_override.yaml
+    setString:
+      - name: credentials.id
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+      - name: credentials.key
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+      - name: repoPassword
+        value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
+ 

@@ -2,10 +2,13 @@ version: 0.170.1
 dependencies:
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.1.17
+  version: 22.1.19
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.1.17
+  version: 22.1.19
+- name: k8up
+  repository: https://k8up-io.github.io/k8up
+  version: 4.8.4
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
   version: 20.4.1
@@ -20,12 +23,12 @@ dependencies:
   version: 5.7.2
 - name: rook-ceph
   repository: https://charts.rook.io/release
-  version: v1.16.4
+  version: v1.16.5
 - name: rook-ceph-cluster
   repository: https://charts.rook.io/release
-  version: v1.16.4
+  version: v1.16.5
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 34.4.0
-digest: sha256:ae3af00aca7e75b01aeac08d366f89f2025cb82e07620502af0801f1e619538f
-generated: "2025-03-01T19:29:55.83351644-07:00"
+  version: 34.4.1
+digest: sha256:639b864ac6cbaa4164f58c388865d7a2796abbfacec9e69c5c077e1452cb557c
+generated: "2025-03-09T19:02:38.355742026-06:00"
