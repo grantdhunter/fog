@@ -12,11 +12,16 @@ users:
     databases:
       - postgres
       - synapse
+      - gitea     
     options: "SUPERUSER LOGIN"
   - name: synapse
     databases:
       - synapse
     options: "LOGIN"
+  - name: gitea
+    databases:
+      - gitea
+    options: "LOGIN"      
     
     
   

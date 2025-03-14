@@ -83,14 +83,37 @@ kubectl create secret generic digitalocean-api-key --from-literal=token=$DIGITAL
 ```
 
 #### Postgres
-copy secret over to goatchat namespace
+
+#### synapse
+```sh
+kubectl create secret generic goatchatca-signingkey --from-literal=signing.key=$GOATCHAT_SYNAPSE_SIGNING_KEY
+
+```
+copy secret from datastore over to goatchat namespace
 ```sh
 kubectl get secrets -n datastore postgres-pguser-synapse -o json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.ownerReferences) | .metadata.creationTimestamp=null,.metadata.namespace="goatchat"' | kubectl apply -f -
 ```
+delete synapse db and recreate with correct locale
+```sh
+PRIMARY_POD=$(kubectl -n datastore get pods --selector='postgres-operator.crunchydata.com/cluster=postgres,postgres-operator.crunchydata.com/role=master' -o jsonpath='{.items[*].metadata.labels.statefulset\.kubernetes\.io/pod-name}')
+PGPASSWORD=$(kubectl -n datastore get secrets  "postgres-pguser-grant" -o go-template='{{.data.password | base64decode}}')
 
-#### synapse
+kubectl -n datastore exec -it "$PRIMARY_POD" -- psql -c 'DROP DATABASE synapse;'
+kubectl -n datastore exec -it "$PRIMARY_POD" -- createdb --encoding=UTF8 --locale=C --template=template0 --owner=synapse synapse
 ```
-kubectl create secret generic goatchatca-signingkey --from-literal=signing.key=$GOATCHAT_SYNAPSE_SIGNING_KEY
+
+#### gitea
+copy secret from datastore over to goatchat namespace
+```sh
+kubectl get secrets -n datastore postgres-pguser-gitea -o json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.ownerReferences) | .metadata.creationTimestamp=null,.metadata.namespace="gitea"' | kubectl apply -f -
+```
+delete gitea db and recreate with correct locale
+```sh
+PRIMARY_POD=$(kubectl -n datastore get pods --selector='postgres-operator.crunchydata.com/cluster=postgres,postgres-operator.crunchydata.com/role=master' -o jsonpath='{.items[*].metadata.labels.statefulset\.kubernetes\.io/pod-name}')
+PGPASSWORD=$(kubectl -n datastore get secrets  "postgres-pguser-grant" -o go-template='{{.data.password | base64decode}}')
+
+kubectl -n datastore exec -it "$PRIMARY_POD" -- psql -c 'DROP DATABASE gitea;'
+kubectl -n datastore exec -it "$PRIMARY_POD" -- createdb --encoding=UTF8 --locale=C --template=template0 --owner=gitea gitea
 ```
 
 #### Ghost Blogs

@@ -15,6 +15,8 @@ repositories:
     url: https://immich-app.github.io/immich-charts
   - name: k8up-io
     url: https://k8up-io.github.io/k8up
+  - name: gitea
+    url: https://dl.gitea.io/charts
 releases:
   # networking
   - name: metallb
@@ -114,6 +116,16 @@ releases:
       - name: ghostUsername
         value: {{ requiredEnv "GHOST_53LL_USER_NAME" }}
 
+  # dev tools
+  - name: gitea
+    namespace: gitea
+    createNamespace: true
+    chart: gitea/gitea
+    values:
+      - ./gitea/values.yaml
+    setString:
+      - name: gitea.admin.password
+        value: {{ requiredEnv "GITEA_ADMIN_PASSWORD" }}
   # backup
   - name: k8up
     namespace: k8up

@@ -6,6 +6,9 @@ dependencies:
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
   version: 22.1.19
+- name: gitea
+  repository: https://dl.gitea.io/charts
+  version: 11.0.0
 - name: k8up
   repository: https://k8up-io.github.io/k8up
   version: 4.8.4
@@ -14,7 +17,7 @@ dependencies:
   version: 20.4.1
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.11.4
+  version: 3.11.5
 - name: pgo
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.2
@@ -27,8 +30,11 @@ dependencies:
 - name: rook-ceph-cluster
   repository: https://charts.rook.io/release
   version: v1.16.5
+- name: tailscale-operator
+  repository: https://pkgs.tailscale.com/helmcharts
+  version: 1.80.3
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.4.1
-digest: sha256:639b864ac6cbaa4164f58c388865d7a2796abbfacec9e69c5c077e1452cb557c
-generated: "2025-03-09T19:02:38.355742026-06:00"
+digest: sha256:14c9bc504c5060f8bbce5ec9a8df737a19a7216428a31c1cb34ef5c6648e45c5
+generated: "2025-03-12T21:27:22.529913117-06:00"
