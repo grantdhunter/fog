@@ -15,6 +15,8 @@ repositories:
     url: https://immich-app.github.io/immich-charts
   - name: k8up-io
     url: https://k8up-io.github.io/k8up
+  - name: tailscale
+    url: https://pkgs.tailscale.com/helmcharts
   - name: gitea
     url: https://dl.gitea.io/charts
 releases:
@@ -34,6 +36,17 @@ releases:
         value: {{ requiredEnv "ACME_EMAIL" }}
       - name: extraObjects[0].stringData.password
         value: {{ requiredEnv "TRAEFIK_ADMIN_PASSWORD" }}
+  - name: tailscale-operator
+    namespace: tailscale
+    createNamespace: true
+    chart: tailscale/tailscale-operator
+    setString:
+      - name: oauth.clientId
+        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}
+      - name: oauth.clientSecret
+        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_SECRET" }}
+      - name: apiServerProxyConfig.mode
+        value: noauth
   # storage infrastructure
   - name: rook-ceph
     namespace: rook-ceph
