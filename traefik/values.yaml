@@ -8,10 +8,10 @@ deployment:
           mountPath: /data
 
 env:
- - name: DO_AUTH_TOKEN
+ - name: HETZNER_API_KEY
    valueFrom:
      secretKeyRef:
-       name: digitalocean-api-key
+       name: hetzner-api-key
        key: token
 
 additionalArguments:
@@ -52,7 +52,7 @@ certificatesResolvers:
   letsencrypt:
     acme:
       dnschallenge:
-        provider: digitalocean
+        provider: hetzner
         delaybeforecheck: 30
       email: # set through cli args
       storage: /data/acme.json
