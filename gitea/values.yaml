@@ -1,0 +1,59 @@
+gitea:
+  config:
+    server:
+      ROOT_URL: https://git.incngrnt.ca/
+      MINIMUM_KEY_SIZE_CHECK: false
+    service:
+      DISABLE_REGISTRATION: true
+    database:
+      DB_TYPE: postgres
+    indexer:
+      ISSUE_INDEXER_TYPE: bleve
+      REPO_INDEXER_ENABLED: true
+    cron:
+      enabled: true
+    repository:
+      DISABLE_DOWNLOAD_SOURCE_ARCHIVES: true
+  additionalConfigFromEnvs:
+    - name: GITEA__DATABASE__HOST
+      valueFrom:
+        secretKeyRef:
+          name: postgres-pguser-gitea
+          key: host 
+    - name: GITEA__DATABASE__NAME
+      valueFrom:
+        secretKeyRef:
+          name: postgres-pguser-gitea
+          key: dbname  
+    - name: GITEA__DATABASE__USER
+      valueFrom:
+        secretKeyRef:
+          name: postgres-pguser-gitea
+          key: user
+    - name: GITEA__DATABASE__PASSWD
+      valueFrom:
+        secretKeyRef:
+          name: postgres-pguser-gitea
+          key: password
+
+strategy:
+  type: Recreate
+ingress:
+  enabled: true
+  hosts:
+    - host: git.incngrnt.ca
+      paths:
+        - path: "/"
+          pathType: Prefix
+  annotations:
+    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+
+  
+redis:
+  enabled: true
+redis-cluster:
+  enabled: false
+postgresql:
+  enabled: false
+postgresql-ha:
+  enabled: false
