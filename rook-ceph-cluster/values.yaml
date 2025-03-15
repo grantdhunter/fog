@@ -9,19 +9,19 @@ cephClusterSpec:
   resources:
     mgr:
       requests:
-        cpu: 150m
+        cpu: 100m
         memory: 256Mi
       limits:
         cpu: "1"
     mon:
       requests:
-        cpu: 150m
+        cpu: 100m
         memory: 256Mi
       limits:
         cpu: "1"        
     osd:
       requests:
-        cpu: 150m
+        cpu: 100m
         memory: 256Mi
       limits:
         cpu: "1"
@@ -43,7 +43,7 @@ cephFileSystems:
         activeStandby: true
         resources:
           requests:
-            cpu: 250m
+            cpu: 100m
             memory: 256Mi
           limit:
             cpu: "1"
