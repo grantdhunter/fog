@@ -19,6 +19,12 @@ additionalArguments:
 
 persistence:
   enabled: true
+    
+logs:
+  format: json    
+  access:
+    enabled: true
+    format: json    
 
 ingressRoute:
   dashboard:

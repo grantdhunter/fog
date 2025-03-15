@@ -19,6 +19,10 @@ repositories:
     url: https://pkgs.tailscale.com/helmcharts
   - name: gitea
     url: https://dl.gitea.io/charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
 releases:
   # networking
   - name: metallb
@@ -52,6 +56,8 @@ releases:
     namespace: rook-ceph
     createNamespace: true
     chart: rook-release/rook-ceph
+    values:
+      - ./rook-ceph/values.yaml
   - name: rook-ceph-cluster
     namespace: rook-ceph
     createNamespace: true
@@ -83,6 +89,36 @@ releases:
     setString:
       - name: auth.rootPassword
         value: {{ requiredEnv "MARIADB_ROOT_PASSWORD" }}
+
+# monitoring
+  - name: grafana
+    namespace: grafana
+    createNamespace: true
+    chart: grafana/grafana
+    values:
+      - grafana/grafana_values.yaml
+    setString:
+      - name: adminPassword
+        value: VYHEKk0Q9KfqQ3UpTx8oc4InrXlUQivUuEeGU8LJ
+  - name: prometheus
+    namespace: grafana
+    createNamespace: true
+    chart: prometheus-community/prometheus
+    values:
+      - grafana/prometheus_values.yaml
+  - name: loki
+    namespace: grafana
+    createNamespace: true
+    chart: grafana/loki
+    values:
+      - grafana/loki_values.yaml
+  - name: alloy
+    namespace: grafana
+    createNamespace: true
+    chart: grafana/alloy
+    values:
+      - grafana/alloy_values.yaml
+      
   # goatchat matrix
   - name: goatchat
     namespace: goatchat
@@ -160,6 +196,20 @@ releases:
         value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
   - name: goatchat-backup
     namespace: goatchat
+    chart: ./k8up-backup
+    createNamespace: true    
+    values:
+      - ./k8up-backup/values_override.yaml
+    setString:
+      - name: credentials.id
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+      - name: credentials.key
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+      - name: repoPassword
+        value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
+ 
+  - name: gitea-backup
+    namespace: gitea
     chart: ./k8up-backup
     createNamespace: true    
     values:
