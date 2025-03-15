@@ -11,7 +11,16 @@ allowEmptyPassword: false
 
 readinessProbe:
   enabled: false
-  
+
+resources:
+  limits:                        
+    cpu: 500m                    
+    ephemeral-storage: 2Gi
+    memory: 192Mi
+  requests:
+    cpu: 100m
+    ephemeral-storage: 50Mi
+    memory: 128Mi
 persistence:
   size: 1Gi
 
