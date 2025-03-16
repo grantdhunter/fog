@@ -7,6 +7,9 @@ deployment:
         - name: data
           mountPath: /data
 
+updateStrategy:
+  type: Recreate
+    
 env:
  - name: HETZNER_API_KEY
    valueFrom:
@@ -26,6 +29,10 @@ logs:
     enabled: true
     format: json    
 
+service:
+  spec:
+    externalTrafficPolicy: Local
+    
 ingressRoute:
   dashboard:
     enabled: true
