@@ -7,7 +7,7 @@ Like the cloud but local.
 - helm (https://helm.sh/ )
 - helmfile (https://helmfile.readthedocs.io/en/latest/ )
 - bitwarded secrets CLI (https://bitwarden.com/help/secrets-manager-cli/ )
-
+- just (https://just.systems/man/en/ )
 ## Talos Cluster
 ### Hardware
 - HP ProDesk 400 G3 (x3)
