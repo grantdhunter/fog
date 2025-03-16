@@ -36,6 +36,11 @@ ingressRoute:
     tls:
       certResolver: letsencrypt
 
+ports:
+  websecure:
+    middlewares:
+      - traefik-rate-limit@kubernetescrd
+
 extraObjects:
   - apiVersion: v1
     kind: Secret
@@ -53,6 +58,14 @@ extraObjects:
     spec:
       basicAuth:
         secret: traefik-dashboard-auth-secret
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: rate-limit
+    spec:
+      rateLimit:
+        average: 50
+        burst: 100
 
 certificatesResolvers:
   letsencrypt:
