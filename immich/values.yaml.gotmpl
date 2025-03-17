@@ -1,0 +1,28 @@
+env:
+  DB_HOSTNAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
+  DB_USERNAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.user | base64decode }}'") }}
+  DB_DATABASE_NAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.dbname | base64decode }}'") }}
+  DB_PASSWORD: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.password | base64decode }}'") }}
+  DB_VECTOR_EXTENSION: pgvector
+
+immich:
+  persistence:
+    library: 
+      existingClaim: immich-data
+  
+redis:
+  enabled: true
+
+
+server:
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+      hosts:
+        - host: photos.incngrnt.ca
+          paths:
+            - path: "/"
+              pathType: Prefix
+    

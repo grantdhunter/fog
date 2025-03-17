@@ -148,6 +148,13 @@ releases:
       - name: adminApiSharedSecret
         value: {{ requiredEnv "GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET"}}
 
+  - name: immich
+    namespace: immich
+    createNamespace: true
+    chart: immich/immich
+    values:
+      - immich/values.yaml.gotmpl
+      
   # website
   - name: incngrnt-web
     namespace: incngrnt-web

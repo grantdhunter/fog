@@ -6,13 +6,14 @@ patroni:
     postgresql:
       pg_hba:
         - "host all all all scram-sha-256"
-
+    shared_preload_libraries: pgvector
 users:
   - name: grant
     databases:
       - postgres
       - synapse
-      - gitea     
+      - gitea
+      - immich
     options: "SUPERUSER LOGIN"
   - name: synapse
     databases:
@@ -22,6 +23,9 @@ users:
     databases:
       - gitea
     options: "LOGIN"      
-    
+  - name: immich
+    databases:
+      - immich
+    options: "LOGIN"
     
   

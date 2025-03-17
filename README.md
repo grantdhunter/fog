@@ -103,7 +103,7 @@ kubectl -n datastore exec -it "$PRIMARY_POD" -- createdb --encoding=UTF8 --local
 ```
 
 #### gitea
-copy secret from datastore over to goatchat namespace
+copy secret from datastore over to gitea namespace
 ```sh
 kubectl get secrets -n datastore postgres-pguser-gitea -o json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.ownerReferences) | .metadata.creationTimestamp=null,.metadata.namespace="gitea"' | kubectl apply -f -
 ```
@@ -123,6 +123,11 @@ kubectl create secret generic gitea-runner-token --from-literal=token='<token>'
 allow priviledge pods
 ```sh
 kubectl label namespace gitea pod-security.kubernetes.io/enforce=privileged
+```
+#### Immich
+copy secret from datastore over to immich namespace
+```sh
+kubectl get secrets -n datastore postgres-pguser-immich -o json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.ownerReferences) | .metadata.creationTimestamp=null,.metadata.namespace="immich"' | kubectl apply -f -
 ```
 
 #### Ghost Blogs
