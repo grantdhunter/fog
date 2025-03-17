@@ -36,7 +36,7 @@ service:
 ingressRoute:
   dashboard:
     enabled: true
-    matchRule: Host(`fog.goatchat.ca`) && (PathPrefix(`/fog/traefik/dashboard`) || PathPrefix(`/fog/traefik/api`))
+    matchRule: Host(`fog.incngrnt.ca`) && (PathPrefix(`/fog/traefik/dashboard`) || PathPrefix(`/fog/traefik/api`))
     entryPoints: ["websecure"]
     middlewares:
       - name: traefik-dashboard-auth

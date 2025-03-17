@@ -115,6 +115,15 @@ PGPASSWORD=$(kubectl -n datastore get secrets  "postgres-pguser-grant" -o go-tem
 kubectl -n datastore exec -it "$PRIMARY_POD" -- psql -c 'DROP DATABASE gitea;'
 kubectl -n datastore exec -it "$PRIMARY_POD" -- createdb --encoding=UTF8 --locale=C --template=template0 --owner=gitea gitea
 ```
+create runner token 
+```sh
+kubectl exec -it <pod> -- gitea --config /data/gitea/conf/app.ini actions generate-runner-token
+kubectl create secret generic gitea-runner-token --from-literal=token='<token>'
+```
+allow priviledge pods
+```sh
+kubectl label namespace gitea pod-security.kubernetes.io/enforce=privileged
+```
 
 #### Ghost Blogs
 I got tired of fighting the docker container so I manually overrode the `config.production.json`

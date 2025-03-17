@@ -25,6 +25,17 @@ cephClusterSpec:
         memory: 256Mi
       limits:
         cpu: "1"
+
+ingress:
+  dashboard:
+      host:
+        name: fog.incngrnt.ca
+        path: /fog/ceph
+        pathType: Prefix
+      annotations:
+        "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+        "traefik.ingress.kubernetes.io/router.middlewares": "rook-ceph-ceph-stripprefix@kubernetescrd"
+
 cephFileSystems:
   - name: ceph-filesystem
     # see https://github.com/rook/rook/blob/master/Documentation/ceph-filesystem-crd.md#filesystem-settings for available configuration

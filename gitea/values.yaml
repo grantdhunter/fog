@@ -38,6 +38,7 @@ gitea:
 
 strategy:
   type: Recreate
+
 ingress:
   enabled: true
   hosts:
@@ -54,7 +55,11 @@ service:
     port: 22
     clusterIP:
       
-  
+actions:
+  enabled: true
+  existingSecret: gitea-runner-token
+  existingSecretKey: token
+ 
 redis:
   enabled: true
 redis-cluster:
