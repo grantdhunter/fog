@@ -47,7 +47,9 @@ ports:
   websecure:
     middlewares:
       - traefik-rate-limit@kubernetescrd
-
+  web:
+    middlewares:
+      - traefik-redirectscheme@kubernetescrd      
   ssh:
     port: 2222
     expose:
@@ -81,6 +83,14 @@ extraObjects:
       rateLimit:
         average: 50
         burst: 100
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: redirectscheme
+    spec:
+      redirectScheme:
+        scheme: https
+        permanent: true
 
 certificatesResolvers:
   letsencrypt:

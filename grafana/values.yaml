@@ -1,0 +1,8 @@
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - watcher.incngrnt.ca
+    annotations:
+      "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+

@@ -97,24 +97,9 @@ releases:
   - name: grafana
     namespace: grafana
     createNamespace: true
-    chart: grafana/grafana
+    chart: grafana/lgtm-distributed
     values:
-      - grafana/grafana_values.yaml
-    setString:
-      - name: adminPassword
-        value: VYHEKk0Q9KfqQ3UpTx8oc4InrXlUQivUuEeGU8LJ
-  - name: prometheus
-    namespace: grafana
-    createNamespace: true
-    chart: prometheus-community/prometheus
-    values:
-      - grafana/prometheus_values.yaml
-  - name: loki
-    namespace: grafana
-    createNamespace: true
-    chart: grafana/loki
-    values:
-      - grafana/loki_values.yaml
+      - grafana/values.yaml
   - name: alloy
     namespace: grafana
     createNamespace: true

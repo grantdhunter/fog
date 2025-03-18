@@ -5,25 +5,22 @@ dependencies:
   version: 0.12.5
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.0
+  version: 22.2.1
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.0
+  version: 22.2.1
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.0
-- name: grafana
-  repository: https://grafana.github.io/helm-charts
-  version: 8.10.4
 - name: immich
   repository: https://immich-app.github.io/immich-charts
   version: 0.9.1
 - name: k8up
   repository: https://k8up-io.github.io/k8up
   version: 4.8.4
-- name: loki
+- name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
-  version: 6.28.0
+  version: 2.1.0
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
   version: 20.4.1
@@ -36,9 +33,6 @@ dependencies:
 - name: postgrescluster
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.2
-- name: prometheus
-  repository: https://prometheus-community.github.io/helm-charts
-  version: 27.5.1
 - name: rook-ceph
   repository: https://charts.rook.io/release
   version: v1.16.5
@@ -54,5 +48,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.4.1
-digest: sha256:d9f95a5155811ec4c166a0d351902b6a4d69cecbb9e466aca3b31721fd0fa7c9
-generated: "2025-03-16T22:05:07.757175164-06:00"
+digest: sha256:e2c65297653c325106e0a9055ed7a59f9c801035089e1684934ceef50a032ac8
+generated: "2025-03-17T21:13:03.161466198-06:00"

@@ -1,8 +1,8 @@
 env:
-  DB_HOSTNAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
-  DB_USERNAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.user | base64decode }}'") }}
-  DB_DATABASE_NAME: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.dbname | base64decode }}'") }}
-  DB_PASSWORD: {{ exec "kubectl" (list "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.password | base64decode }}'") }}
+  DB_HOSTNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
+  DB_USERNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.user | base64decode }}'") }}
+  DB_DATABASE_NAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.dbname | base64decode }}'") }}
+  DB_PASSWORD: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.password | base64decode }}'") }}
   DB_VECTOR_EXTENSION: pgvector
 
 immich:
@@ -12,7 +12,9 @@ immich:
   
 redis:
   enabled: true
-
+  master:
+    resources:
+      limits: 
 
 server:
   ingress:
