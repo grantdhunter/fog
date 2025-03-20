@@ -106,7 +106,10 @@ releases:
     chart: grafana/alloy
     values:
       - grafana/alloy_values.yaml
-      
+  - name: kube-state-metrics
+    namespace: grafana
+    createNamespace: true
+    chart: prometheus-community/kube-state-metrics
   # goatchat matrix
   - name: goatchat
     namespace: goatchat

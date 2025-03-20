@@ -18,6 +18,9 @@ dependencies:
 - name: k8up
   repository: https://k8up-io.github.io/k8up
   version: 4.8.4
+- name: kube-state-metrics
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 5.30.1
 - name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
   version: 2.1.0
@@ -48,5 +51,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.4.1
-digest: sha256:e2c65297653c325106e0a9055ed7a59f9c801035089e1684934ceef50a032ac8
-generated: "2025-03-17T21:13:03.161466198-06:00"
+digest: sha256:5645dcc617a44ae663f1550e08169a323c8d96e491f45178362a5389763f4b2f
+generated: "2025-03-18T20:53:53.212208477-06:00"

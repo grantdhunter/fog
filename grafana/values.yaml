@@ -6,3 +6,5 @@ grafana:
     annotations:
       "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
 
+  persistence:
+    enabled: true    
