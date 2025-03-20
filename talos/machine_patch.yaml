@@ -1,4 +1,6 @@
 machine:
+    install:
+        image: ghcr.io/siderolabs/installer:v1.9.5
     kubelet:
         extraArgs:
           rotate-server-certificates: true 

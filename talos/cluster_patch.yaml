@@ -1,5 +1,6 @@
 cluster:
-    proxy:
-        extraArgs:
-           ipvs-strict-arp: true
-    allowSchedulingOnControlPlanes: true    
+  clusterName: fog    
+  proxy:
+      extraArgs:
+         ipvs-strict-arp: true
+  allowSchedulingOnControlPlanes: true    
