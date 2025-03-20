@@ -14,8 +14,10 @@ redis:
   enabled: true
   master:
     resources:
+      requests:
+        cpu: 10m
       limits: 
-
+          cpu: 1
 server:
   ingress:
     main:
@@ -27,4 +29,15 @@ server:
           paths:
             - path: "/"
               pathType: Prefix
-    
+  resources:
+    requests:
+      cpu: 10m
+    limits: 
+      cpu: 1
+
+machine-learning:
+  resources:
+    requests:
+      cpu: 10m
+    limits: 
+      cpu: 1
