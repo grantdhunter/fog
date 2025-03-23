@@ -1,3 +1,5 @@
+# {{- if .Values.oneTimeBackup }}
+
 apiVersion: k8up.io/v1
 kind: Backup
 metadata:
@@ -18,3 +20,4 @@ spec:
       secretAccessKeySecretRef:
          name: "{{ .Release.Name }}-credentials"
          key: key    
+# {{- end }}

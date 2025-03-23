@@ -12,15 +12,19 @@ immich:
   persistence:
     library: 
       existingClaim: immich-data
-  
+ 
 redis:
   enabled: true
   master:
+    persistence:
+      annotations:
+        k8up.io/backup: 'false'
     resources:
       requests:
         cpu: 10m
       limits: 
           cpu: 1
+
 server:
   ingress:
     main:

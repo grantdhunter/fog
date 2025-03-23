@@ -185,8 +185,12 @@ releases:
     namespace: k8up
     createNamespace: true
     chart: k8up-io/k8up
-  # backups
-  - name: k8up-backup
+    values:
+      - ./k8up/values.yaml
+
+
+# backups
+  - name: ghost-backup
     namespace: ghost
     chart: ./k8up-backup
     createNamespace: true    
@@ -212,7 +216,6 @@ releases:
         value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
       - name: repoPassword
         value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
- 
   - name: gitea-backup
     namespace: gitea
     chart: ./k8up-backup
@@ -226,4 +229,16 @@ releases:
         value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
       - name: repoPassword
         value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
- 
+  - name: immich-backup
+    namespace: immich
+    chart: ./k8up-backup
+    createNamespace: true    
+    values:
+      - ./k8up-backup/values_override.yaml
+    setString:
+      - name: credentials.id
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+      - name: credentials.key
+        value:  {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+      - name: repoPassword
+        value:  {{ requiredEnv "k8UP_REPO_PASSWORD" }}
