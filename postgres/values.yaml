@@ -1,5 +1,4 @@
 instanceSize: 10Gi
-backupsSize: 10Gi
 
 patroni:
   dynamicConfiguration:
@@ -28,4 +27,10 @@ users:
       - immich
     options: "LOGIN"
     
-  
+multiBackupRepos:
+  - volume:
+      backupsSize: 10Gi
+  - s3:
+      bucket: fog
+      endpoint: hel1.your-objectstorage.com
+      region: hel1

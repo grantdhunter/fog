@@ -83,6 +83,13 @@ releases:
     chart: crunchydata/postgrescluster
     values:
       - postgres/values.yaml
+    setString:
+      - name: multiBackupRepos[1].s3.key
+        value: {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+      - name: multiBackupRepos[1].s3.keySecret
+        value: {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+      - name: multiBackupRepos[1].s3.encryptionPassphrase
+        value: {{ requiredEnv "PG_BACKREST_PASSWORD" }}
   - name: mariadb
     namespace: datastore
     createNamespace: true
