@@ -5,10 +5,10 @@ dependencies:
   version: 0.12.5
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.1
+  version: 22.2.3
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.1
+  version: 22.2.3
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.0
@@ -20,13 +20,13 @@ dependencies:
   version: 4.8.4
 - name: kube-state-metrics
   repository: https://prometheus-community.github.io/helm-charts
-  version: 5.30.1
+  version: 5.31.0
 - name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
   version: 2.1.0
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
-  version: 20.4.1
+  version: 20.4.2
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
   version: 3.11.5
@@ -51,5 +51,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.4.1
-digest: sha256:5645dcc617a44ae663f1550e08169a323c8d96e491f45178362a5389763f4b2f
-generated: "2025-03-18T20:53:53.212208477-06:00"
+digest: sha256:5aa15f8e192d2c46949a0cb66fb1ed1a8c089b81842fae35b04a54a19c28d829
+generated: "2025-03-22T22:42:58.842646943-06:00"
