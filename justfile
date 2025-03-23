@@ -1,13 +1,13 @@
 update:
     bws run 'helmfile deps'
 
-deploy:
-    bws run 'helmfile apply'
+deploy ARGS='':
+    bws run 'helmfile apply {{ARGS}}'
 
-sdiff:
+sdiff ARGS='':
     bws run 'helmfile diff --output simple'
 
-ddiff:
+ddiff ARGS='':
     bws run 'helmfile diff --output dyff'
 
 cleanuppods:
