@@ -28,7 +28,7 @@ spec:
     # optional
     #promURL: https://prometheus-io-instance:8443
   prune:
-    schedule: '@weekly-ramdom'
+    schedule: '@weekly-random'
     retention:
       keepLast: 5
       keep Daily: 14
