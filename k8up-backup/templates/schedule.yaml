@@ -20,15 +20,15 @@ spec:
   backup:
     schedule: '@hourly-random'
     failedJobsHistoryLimit: 2
-    successfulJobsHistoryLimit: 2
-    # optional
-    #promURL: https://prometheus-io-instance:8443
+    successfulJobsHistoryLimit: 1
   check:
     schedule: '@daily-random'
-    # optional
-    #promURL: https://prometheus-io-instance:8443
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
   prune:
     schedule: '@weekly-random'
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
     retention:
       keepLast: 5
       keep Daily: 14
