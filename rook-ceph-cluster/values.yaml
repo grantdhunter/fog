@@ -9,7 +9,7 @@ cephClusterSpec:
   resources:
     mgr:
       requests:
-        cpu: 100m
+        cpu: 50m
         memory: 256Mi
       limits:
         cpu: "1"
@@ -54,7 +54,7 @@ cephFileSystems:
         activeStandby: true
         resources:
           requests:
-            cpu: 100m
+            cpu: 50m
             memory: 256Mi
           limit:
             cpu: "1"
