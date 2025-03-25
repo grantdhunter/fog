@@ -13,6 +13,14 @@ signingkey:
 synapse:
   strategy:
     type: Recreate
+  resources:
+    requests:
+      cpu: 10m
+      memory: 160Mi
+    limits:
+      cpu: '1'
+      memory: 320Mi
+
 config:
   macaroonSecretKey: # set through cli args
   registrationSharedSecret: # set through cli args
