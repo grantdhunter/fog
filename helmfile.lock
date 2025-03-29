@@ -5,10 +5,10 @@ dependencies:
   version: 0.12.5
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.5
+  version: 22.2.6
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.5
+  version: 22.2.6
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.1
@@ -29,7 +29,7 @@ dependencies:
   version: 20.4.2
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.11.6
+  version: 3.11.7
 - name: pgo
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.2
@@ -38,10 +38,10 @@ dependencies:
   version: 5.7.2
 - name: rook-ceph
   repository: https://charts.rook.io/release
-  version: v1.16.5
+  version: v1.16.6
 - name: rook-ceph-cluster
   repository: https://charts.rook.io/release
-  version: v1.16.5
+  version: v1.16.6
 - name: static-site
   repository: git+https://github.com/cfpb/static-site@charts?ref=main
   version: 0.1.1
@@ -51,5 +51,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 34.4.1
-digest: sha256:77b2dd2fd948ef735dacbae04cf41c829c2ce6c2ab960d7176be04a42f404846
-generated: "2025-03-26T16:30:20.814859222-06:00"
+digest: sha256:94467f45cec5c21da7f19bd71e4d5a0a5951eeb87dc72475b956bc97cc95809b
+generated: "2025-03-29T10:37:13.48528327-06:00"
