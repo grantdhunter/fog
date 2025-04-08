@@ -1,3 +1,0 @@
-rometheus-node-exporter:
-  rbac:
-    pspEnabled: true
