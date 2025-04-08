@@ -2,13 +2,13 @@ version: 0.170.1
 dependencies:
 - name: alloy
   repository: https://grafana.github.io/helm-charts
-  version: 0.12.5
+  version: 0.12.6
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.6
+  version: 22.2.9
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.6
+  version: 22.2.9
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.1
@@ -20,7 +20,7 @@ dependencies:
   version: 4.8.4
 - name: kube-state-metrics
   repository: https://prometheus-community.github.io/helm-charts
-  version: 5.31.0
+  version: 5.31.1
 - name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
   version: 2.1.0
@@ -47,9 +47,9 @@ dependencies:
   version: 0.1.1
 - name: tailscale-operator
   repository: https://pkgs.tailscale.com/helmcharts
-  version: 1.80.3
+  version: 1.82.0
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 34.4.1
-digest: sha256:94467f45cec5c21da7f19bd71e4d5a0a5951eeb87dc72475b956bc97cc95809b
-generated: "2025-03-29T10:37:13.48528327-06:00"
+  version: 35.0.0
+digest: sha256:17a3920b6b0794d545798081147245dd914c1d081a9bc21ea288ad0d3da93327
+generated: "2025-04-07T23:04:15.089983769-06:00"

@@ -1,5 +1,5 @@
 image:
-  tag: v1.130.3
+  tag: v1.131.3
   
 env:
   DB_HOSTNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
