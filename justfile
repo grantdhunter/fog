@@ -1,7 +1,7 @@
 update:
     bws run 'helmfile deps'
 
-deploy ARGS='':
+deploy ARGS='--output simple -i':
     bws run 'helmfile apply {{ARGS}}'
 
 sdiff ARGS='':

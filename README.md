@@ -33,8 +33,10 @@ talosctl gen config fog  https://192.168.1.43:6443 \
          --with-secrets talos/secrets.yaml \
          --config-patch @talos/machine_patch.yaml \
          --config-patch-control-plane @talos/cluster_patch.yaml \
-         --config-patch-control-plane @talos/remove_node_label_patch.yaml
+         --config-patch-control-plane @talos/remove_node_label_patch.yaml \
+         --config-patch-worker @talos/framework_patch.yaml
 ```
+
 ### Add node to talos cluster
 ```sh
 talosctl apply-config [--insecure] -n <ips> controlplane.yaml
