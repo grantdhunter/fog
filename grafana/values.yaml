@@ -8,3 +8,12 @@ grafana:
 
   persistence:
     enabled: true    
+
+mimir:
+  mimir:
+    structuredConfig:
+      limits:
+        compactor_blocks_retention_period: 1h
+  ingester:
+    persistentVolume:
+      size: 5Gi
