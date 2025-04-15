@@ -2,13 +2,13 @@ version: 0.170.1
 dependencies:
 - name: alloy
   repository: https://grafana.github.io/helm-charts
-  version: 0.12.6
+  version: 1.0.1
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.9
+  version: 22.2.12
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.9
+  version: 22.2.12
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.1
@@ -20,7 +20,7 @@ dependencies:
   version: 4.8.4
 - name: kube-state-metrics
   repository: https://prometheus-community.github.io/helm-charts
-  version: 5.31.1
+  version: 5.32.0
 - name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
   version: 2.1.0
@@ -29,7 +29,7 @@ dependencies:
   version: 20.4.2
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.11.7
+  version: 3.11.8
 - name: pgo
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.2
@@ -51,5 +51,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 35.0.0
-digest: sha256:17a3920b6b0794d545798081147245dd914c1d081a9bc21ea288ad0d3da93327
-generated: "2025-04-07T23:04:15.089983769-06:00"
+digest: sha256:129a2cbed1ab768676c44d0cc66d53c7df0e76081e5f690eab361af90863e0ac
+generated: "2025-04-14T20:39:03.71120286-06:00"
