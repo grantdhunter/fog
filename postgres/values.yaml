@@ -1,4 +1,4 @@
-instanceSize: 10Gi
+instanceSize: 50Gi
 
 patroni:
   dynamicConfiguration:
@@ -26,11 +26,20 @@ users:
     databases:
       - immich
     options: "LOGIN"
-    
-multiBackupRepos:
-  - volume:
-      backupsSize: 10Gi
-  - s3:
+
+
+pgBackRestConfig:
+  global:
+    repo1-path: /pgbackrest/datastore/postgres/repo1
+    repo1-retention-full: "10"
+    repo1-retention-full-type: count    
+
+  repos:
+  - name: repo1
+    s3:
       bucket: fog
       endpoint: hel1.your-objectstorage.com
       region: hel1
+      schedules:
+          full: "0 1 * * 0"
+          differential: "0 1 * * 1-6"

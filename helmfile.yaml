@@ -84,12 +84,12 @@ releases:
     values:
       - postgres/values.yaml
     setString:
-      - name: multiBackupRepos[1].s3.key
-        value: {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
-      - name: multiBackupRepos[1].s3.keySecret
-        value: {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
-      - name: multiBackupRepos[1].s3.encryptionPassphrase
-        value: {{ requiredEnv "PG_BACKREST_PASSWORD" }}
+      - name: pgBackRestConfig.global.repo1-s3-key
+        value: '{{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}'
+      - name: pgBackRestConfig.global.repo1-s3-key-secret
+        value: '{{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}'
+      - name: pgBackRestConfig.global.repo1-cipher-pass
+        value: '{{ requiredEnv "PG_BACKREST_PASSWORD" }}'
   - name: mariadb
     namespace: datastore
     createNamespace: true
