@@ -13,7 +13,7 @@ mimir:
   mimir:
     structuredConfig:
       limits:
-        compactor_blocks_retention_period: 1h
+        compactor_blocks_retention_period: 2h
   ingester:
     persistentVolume:
       size: 5Gi

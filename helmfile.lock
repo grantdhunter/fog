@@ -2,13 +2,13 @@ version: 0.170.1
 dependencies:
 - name: alloy
   repository: https://grafana.github.io/helm-charts
-  version: 1.0.1
+  version: 1.0.2
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.12
+  version: 22.2.15
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 22.2.12
+  version: 22.2.15
 - name: gitea
   repository: https://dl.gitea.io/charts
   version: 11.0.1
@@ -20,28 +20,28 @@ dependencies:
   version: 4.8.4
 - name: kube-state-metrics
   repository: https://prometheus-community.github.io/helm-charts
-  version: 5.32.0
+  version: 5.33.0
 - name: lgtm-distributed
   repository: https://grafana.github.io/helm-charts
   version: 2.1.0
 - name: mariadb
   repository: https://charts.bitnami.com/bitnami
-  version: 20.4.2
+  version: 20.5.3
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
   version: 3.11.8
 - name: pgo
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
-  version: 5.7.2
+  version: 5.8.1
 - name: postgrescluster
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
-  version: 5.7.2
+  version: 5.7.4
 - name: rook-ceph
   repository: https://charts.rook.io/release
-  version: v1.16.6
+  version: v1.17.1
 - name: rook-ceph-cluster
   repository: https://charts.rook.io/release
-  version: v1.16.6
+  version: v1.17.1
 - name: static-site
   repository: git+https://github.com/cfpb/static-site@charts?ref=main
   version: 0.1.1
@@ -50,6 +50,6 @@ dependencies:
   version: 1.82.0
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 35.0.0
-digest: sha256:129a2cbed1ab768676c44d0cc66d53c7df0e76081e5f690eab361af90863e0ac
-generated: "2025-04-14T20:39:03.71120286-06:00"
+  version: 35.1.0
+digest: sha256:0f76bdeb08192e5e6b2ab43e8e76c9db3c7e60f048fd898792a3285f4082ae37
+generated: "2025-04-28T10:17:31.616984087-06:00"
