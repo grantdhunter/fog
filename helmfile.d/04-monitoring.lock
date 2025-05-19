@@ -1,0 +1,10 @@
+version: 0.170.1
+dependencies:
+- name: alloy
+  repository: https://grafana.github.io/helm-charts
+  version: 1.0.3
+- name: lgtm-distributed
+  repository: https://grafana.github.io/helm-charts
+  version: 2.1.0
+digest: sha256:b762680c9b1e855da8da6bdbb1d79216d2d9352b59d3259c554a7e23b9177cb2
+generated: "2025-05-19T17:18:43.394774206-06:00"
