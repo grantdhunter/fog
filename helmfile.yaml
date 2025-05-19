@@ -47,13 +47,13 @@ releases:
     namespace: tailscale
     createNamespace: true
     chart: tailscale/tailscale-operator
+    values:
+      - ./tailscale/values.yaml
     setString:
       - name: oauth.clientId
         value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}
       - name: oauth.clientSecret
         value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_SECRET" }}
-      - name: apiServerProxyConfig.mode
-        value: noauth
   # storage infrastructure
   - name: rook-ceph
     namespace: rook-ceph

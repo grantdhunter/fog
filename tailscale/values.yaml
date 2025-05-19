@@ -1,0 +1,4 @@
+operatorConfig:
+  extraEnv:
+    - name: PROXY_PRIORITY_CLASS_NAME
+      value: critical
