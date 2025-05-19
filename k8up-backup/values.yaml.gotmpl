@@ -1,0 +1,8 @@
+endpoint: hel1.your-objectstorage.com
+bucket: fog
+
+credentials:
+  id: {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+  key: {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+
+repoPassword: {{ requiredEnv "k8UP_REPO_PASSWORD" }}

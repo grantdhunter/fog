@@ -1,0 +1,110 @@
+repositories:
+  - name: ananace-charts
+    url: https://ananace.gitlab.io/charts
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: immich
+    url: https://immich-app.github.io/immich-charts
+  - name: gitea
+    url: https://dl.gitea.io/charts
+  - name: static-site
+    url: git+https://github.com/cfpb/static-site@charts?ref=main
+  - name: incngrnt
+    url: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+releases:
+  # goatchat matrix
+  - name: goatchat
+    namespace: goatchat
+    createNamespace: true
+    chart: ananace-charts/matrix-synapse
+    values:
+      - ../synapse/values.yaml
+    setString:
+      - name: config.macaroonSecretKey
+        value: {{ requiredEnv "GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY" }}
+      - name: config.registrationSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET" }}
+      - name: extraConfig.email.smtp_pass
+        value: {{ requiredEnv "GOATCHAT_SMTP_PASSWORD" }}
+  - name: gate
+    namespace: goatchat
+    createNamespace: true
+    chart: incngrnt/matrix-registration
+    values:
+      - ../matrix-registration/values.yaml
+    setString:
+      - name: registrationSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET"}}
+      - name: adminApiSharedSecret
+        value: {{ requiredEnv "GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET"}}
+
+  - name: immich
+    namespace: immich
+    createNamespace: true
+    chart: immich/immich
+    values:
+      - ../immich/values.yaml.gotmpl
+      
+  # website
+  - name: incngrnt-web
+    namespace: incngrnt-web
+    createNamespace: true
+    chart: static-site/static-site
+    values:
+      - ../incngrnt-web/values.yaml
+  # ghost blogs
+  - name: kgnot-ghost
+    namespace: ghost
+    createNamespace: true
+    chart: bitnami/ghost
+    values:
+      - ../kgnot/values.yaml
+    setString:
+      - name: ghostUsername
+        value: {{ requiredEnv "KGNOT_GHOST_USER_NAME" }}
+  - name: ghost-53ll
+    namespace: ghost
+    createNamespace: true
+    chart: bitnami/ghost
+    values:
+      - ../53ll/values.yaml
+    setString:
+      - name: ghostUsername
+        value: {{ requiredEnv "GHOST_53LL_USER_NAME" }}
+
+  # dev tools
+  - name: gitea
+    namespace: gitea
+    createNamespace: true
+    chart: gitea/gitea
+    values:
+      - ../gitea/values.yaml
+    setString:
+      - name: gitea.admin.password
+        value: {{ requiredEnv "GITEA_ADMIN_PASSWORD" }}
+
+  # backups
+  - name: ghost-backup
+    namespace: ghost
+    chart: incngrnt/k8up-backup
+    createNamespace: true    
+    values:
+      - ../k8up-backup/values.yaml.gotmpl
+  - name: goatchat-backup
+    namespace: goatchat
+    chart: incngrnt/k8up-backup
+    createNamespace: true    
+    values:
+      - ../k8up-backup/values.yaml.gotmpl
+  - name: gitea-backup
+    namespace: gitea
+    chart: incngrnt/k8up-backup
+    createNamespace: true    
+    values:
+      - ../k8up-backup/values.yaml.gotmpl 
+  - name: immich-backup
+    namespace: immich
+    chart: incngrnt/k8up-backup
+    createNamespace: true    
+    values:
+      - ../k8up-backup/values.yaml.gotmpl  

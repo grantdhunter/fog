@@ -1,0 +1,53 @@
+repositories:
+  - name: rook-release
+    url:  https://charts.rook.io/release
+  - name: traefik
+    url: https://traefik.github.io/charts
+  - name: tailscale
+    url: https://pkgs.tailscale.com/helmcharts
+
+releases:
+  # networking
+  - name: metallb
+    namespace: metallb-system
+    createNamespace: true
+    chart: ../metallb
+  - name: traefik
+    namespace: traefik
+    createNamespace: true
+    chart: traefik/traefik
+    values:
+      - ../traefik/values.yaml
+    setString:
+      - name: certificatesResolvers.letsencrypt.acme.email
+        value: {{ requiredEnv "ACME_EMAIL" }}
+      - name: extraObjects[0].stringData.password
+        value: {{ requiredEnv "TRAEFIK_ADMIN_PASSWORD" }}
+  - name: tailscale-operator
+    namespace: tailscale
+    createNamespace: true
+    chart: tailscale/tailscale-operator
+    values:
+      - ../tailscale/values.yaml
+    setString:
+      - name: oauth.clientId
+        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}
+      - name: oauth.clientSecret
+        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_SECRET" }}
+
+  # storage infrastructure
+  - name: rook-ceph
+    namespace: rook-ceph
+    createNamespace: true
+    chart: rook-release/rook-ceph
+    values:
+      - ../rook-ceph/values.yaml
+  - name: rook-ceph-cluster
+    namespace: rook-ceph
+    createNamespace: true
+    chart: rook-release/rook-ceph-cluster
+    values:
+      - ../rook-ceph-cluster/values.yaml
+    set:
+      - name: operatorNamespace
+        value: rook-ceph 

@@ -1,0 +1,46 @@
+repositories:
+  - name: crunchydata
+    url: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: k8up-io
+    url: https://k8up-io.github.io/k8up
+
+releases:
+  # data storage
+  - name: pgo
+    namespace: postgres-operator
+    createNamespace: true
+    chart: crunchydata/pgo
+    values:
+      - ../postgres/operator-values.yaml
+  - name: postgres
+    namespace: datastore
+    createNamespace: true
+    chart: crunchydata/postgrescluster
+    values:
+      - ../postgres/values.yaml
+    setString:
+      - name: pgBackRestConfig.global.repo1-s3-key
+        value: '{{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}'
+      - name: pgBackRestConfig.global.repo1-s3-key-secret
+        value: '{{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}'
+      - name: pgBackRestConfig.global.repo1-cipher-pass
+        value: '{{ requiredEnv "PG_BACKREST_PASSWORD" }}'
+  - name: mariadb
+    namespace: datastore
+    createNamespace: true
+    chart: bitnami/mariadb
+    values:
+      - ../mariadb/values.yaml
+    setString:
+      - name: auth.rootPassword
+        value: {{ requiredEnv "MARIADB_ROOT_PASSWORD" }}
+
+  # backup infrastructure
+  - name: k8up
+    namespace: k8up
+    createNamespace: true
+    chart: k8up-io/k8up
+    values:
+      - ../k8up/values.yaml 

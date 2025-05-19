@@ -1,5 +1,5 @@
-# serverLocation:
-# serverName:
-# serverBaseUrl:
-# registrationSharedSecret:
-# adminApiSharedSecret:    
+serverLocation: http://goatchat-matrix-synapse:8008
+serverName: goatchat.ca
+serverBaseUrl: /gate
+registrationSharedSecret: # set through cli
+adminApiSharedSecret: # set through cli
