@@ -2,10 +2,10 @@ version: 0.170.1
 dependencies:
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 24.0.0
+  version: 25.0.4
 - name: ghost
   repository: https://charts.bitnami.com/bitnami
-  version: 24.0.0
+  version: 25.0.4
 - name: immich
   repository: https://immich-app.github.io/immich-charts
   version: 0.9.3
@@ -26,9 +26,9 @@ dependencies:
   version: 0.1.0
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.12.5
+  version: 3.12.8
 - name: static-site
   repository: git+https://github.com/cfpb/static-site@charts?ref=main
   version: 0.1.1
-digest: sha256:543f62d43099420cacbd138c83cdf2b9542b2a4ebb0cd6231d9e4f6ee5237d93
-generated: "2025-07-29T21:22:05.710429273-06:00"
+digest: sha256:a7f2ab0e045290264fd7675f2e8979e449ccc60df6518ac20eb4d0c4c007fd96
+generated: "2025-09-16T10:37:47.891825732-06:00"

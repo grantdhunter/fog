@@ -8,17 +8,20 @@ releases:
   # monitoring
   - name: grafana
     namespace: grafana
+    installed: false
     createNamespace: true
     chart: grafana/lgtm-distributed
     values:
       - ../grafana/values.yaml
   - name: alloy
     namespace: grafana
+    installed: false    
     createNamespace: true
     chart: grafana/alloy
     values:
       - ../grafana/alloy_values.yaml
   - name: kube-state-metrics
     namespace: grafana
+    installed: false    
     createNamespace: true
     chart: prometheus-community/kube-state-metrics 
