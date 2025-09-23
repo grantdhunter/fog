@@ -8,7 +8,17 @@ diff ARGS='':
     bws run 'helmfile diff --output dyff {{ARGS}}'
 
 cleanuppods:
-    kubectl get pods --no-headers | grep -v Running  | awk '{print $1}' | xargs kubectl delete pod
+    #!/bin/bash
+    kubectl get pods --all-namespaces | grep -v Running | awk '{print $1, $2}' | tail -n +2 | while read namespace pod; do
+       kubectl delete pod "$pod" --namespace "$namespace"
+    done
+
+cleanupjobs:
+    #!/bin/bash
+    kubectl get jobs --all-namespaces | grep -v Running | awk '{print $1, $2}' | tail -n +2 | while read namespace job; do
+       kubectl delete job "$job" --namespace "$namespace"
+    done
+
     
 pgrestart:
     kubectl patch postgrescluster/postgres  --type merge --patch '{"spec":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}'

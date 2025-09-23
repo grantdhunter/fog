@@ -38,6 +38,12 @@ talosctl gen config fog  https://192.168.1.43:6443 \
 ```
 
 ### Add node to talos cluster
+1. Create an ISO USB
+```sh
+sudo dd if=metal-amd64.iso of=/dev/sdc bs=4M
+```
+2. Start the machine with the USB. Once it has booted **REMOVE** the USB so that it doesn't get selected as an install location.
+3. Apply config to install the OS to disk
 ```sh
 talosctl apply-config [--insecure] -n <ips> controlplane.yaml
 ```
