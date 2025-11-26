@@ -2,15 +2,15 @@ version: 0.170.1
 dependencies:
 - name: rook-ceph
   repository: https://charts.rook.io/release
-  version: v1.18.2
+  version: v1.18.7
 - name: rook-ceph-cluster
   repository: https://charts.rook.io/release
-  version: v1.18.2
+  version: v1.18.7
 - name: tailscale-operator
   repository: https://pkgs.tailscale.com/helmcharts
-  version: 1.86.5
+  version: 1.90.9
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 37.1.1
-digest: sha256:390b9f11dc9645c5add8f2efdbaa28bbbaf9ad8ab3056ef5b83580a53abdc112
-generated: "2025-09-16T10:37:17.844160925-06:00"
+  version: 37.4.0
+digest: sha256:e36f2d6589d83e74cb3a4bf19bc795f09d4a199a46547a2ff703c33ff6264b49
+generated: "2025-11-25T20:30:30.565674799-07:00"

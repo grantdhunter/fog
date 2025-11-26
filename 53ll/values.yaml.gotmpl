@@ -1,0 +1,52 @@
+image:
+  debug: true
+
+ghostBlogTitle: 53rd Parallel Photography
+ghostHost: https://53ll.ca
+ghostUsername: {{ requiredEnv "GHOST_53LL_USER_NAME" }}
+existingSecret: ghost-53ll-user-secret
+
+allowEmptyPassword: false
+
+
+readinessProbe:
+  enabled: false
+
+resources:
+  limits:                        
+    cpu: 500m                    
+    ephemeral-storage: 2Gi
+    memory: 250Mi
+  requests:
+    cpu: 10m
+    ephemeral-storage: 50Mi
+    memory: 128Mi
+persistence:
+  size: 1Gi
+
+smtpHost: "smtp.sendgrid.net"
+smtpPort: 465
+smtpUser: "apikey"
+smtpService: "SendGrid"
+smtpProtocol: "tls"
+smtpExistingSecret: 53ll-smtp-password
+
+mysql:
+  enabled: false
+externalDatabase:
+  host: mariadb.datastore.svc.cluster.local
+  user: 53ll_ghost
+  database: 53ll_ghost
+  existingSecret: ghost-53ll-db-secret
+   
+updateStrategy:
+  type: Recreate
+
+service:
+  type: ClusterIP    
+ingress:
+  enabled: true
+  hostname: 53ll.ca
+  tls: true
+  annotations:
+    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt" 

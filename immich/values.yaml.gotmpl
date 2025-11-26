@@ -1,19 +1,23 @@
-image:
-  tag: v1.142.1
-  
-env:
-  DB_HOSTNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
-  DB_USERNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.user | base64decode }}'") }}
-  DB_DATABASE_NAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.dbname | base64decode }}'") }}
-  DB_PASSWORD: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.password | base64decode }}'") }}
-  DB_VECTOR_EXTENSION: pgvector
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          tag: v2.3.1
+
+        env:
+          DB_HOSTNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
+          DB_USERNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.user | base64decode }}'") }}
+          DB_DATABASE_NAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.dbname | base64decode }}'") }}
+          DB_PASSWORD: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.password | base64decode }}'") }}
+          DB_VECTOR_EXTENSION: pgvector
 
 immich:
   persistence:
     library: 
       existingClaim: immich-data
  
-redis:
+valkey:
   enabled: true
   master:
     persistence:
@@ -26,27 +30,37 @@ redis:
           cpu: 1
 
 server:
+  enabled: true
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        main:
+          resources:
+            requests:
+              cpu: 10m
+            limits: 
+              cpu: 1
   ingress:
     main:
       enabled: true
       annotations:
-        "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+        traefik.ingress.kubernetes.io/router.tls.certresolver: "letsencrypt"
       hosts:
         - host: photos.incngrnt.ca
           paths:
             - path: "/"
-              pathType: Prefix
-  resources:
-    requests:
-      cpu: 10m
-    limits: 
-      cpu: 1
-  controller:
-    strategy:  Recreate
+              service:
+                identifier: main
 
 machine-learning:
-  resources:
-    requests:
-      cpu: 10m
-    limits: 
-      cpu: 1
+  enabled: true
+  controllers:
+    main:
+      containers:
+        main:
+          resources:
+            requests:
+              cpu: 10m
+            limits: 
+              cpu: 1

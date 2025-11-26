@@ -8,7 +8,7 @@ dependencies:
   version: 25.0.4
 - name: immich
   repository: https://immich-app.github.io/immich-charts
-  version: 0.9.3
+  version: 0.10.3
 - name: k8up-backup
   repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
   version: 0.0.3
@@ -26,9 +26,9 @@ dependencies:
   version: 0.1.0
 - name: matrix-synapse
   repository: https://ananace.gitlab.io/charts
-  version: 3.12.8
+  version: 3.12.16
 - name: static-site
   repository: git+https://github.com/cfpb/static-site@charts?ref=main
   version: 0.1.1
-digest: sha256:a7f2ab0e045290264fd7675f2e8979e449ccc60df6518ac20eb4d0c4c007fd96
-generated: "2025-09-16T10:37:47.891825732-06:00"
+digest: sha256:59866b3b160d35756885a2db0a3344bba48161e5ba6935350286f9a754b8b219
+generated: "2025-11-25T20:31:24.531424306-07:00"

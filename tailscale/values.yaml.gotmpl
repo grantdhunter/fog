@@ -1,0 +1,8 @@
+operatorConfig:
+  extraEnv:
+    - name: PROXY_PRIORITY_CLASS_NAME
+      value: critical
+
+oauth:
+  clientId: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}
+  clientSecret: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_SECRET" }} 

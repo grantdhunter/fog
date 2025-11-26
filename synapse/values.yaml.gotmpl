@@ -1,0 +1,84 @@
+serverName: 'goatchat.ca'
+publicServerName: 'goatchat.ca'
+
+wellknown:
+  enabled: true
+  
+signingkey:
+  job:
+    enabled: false
+  existingSecret: goatchatca-signingkey
+  existingSecretKey: signing.key
+
+synapse:
+  strategy:
+    type: Recreate
+  resources:
+    requests:
+      cpu: 10m
+      memory: 160Mi
+    limits:
+      cpu: '1'
+      memory: 320Mi
+
+config:
+  macaroonSecretKey: {{ requiredEnv "GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY" }}
+  registrationSharedSecret: {{ requiredEnv "GOATCHAT_REGISTRATION_SHARED_SECRET" }}
+
+extraConfig:
+  url_preview_enabled: true    
+  url_preview_ip_range_blacklist:
+     - '127.0.0.0/8'
+     - '10.0.0.0/8'
+     - '172.16.0.0/12'
+     - '192.168.0.0/16'
+     - '100.64.0.0/10'
+     - '169.254.0.0/16'
+     - '::1/128'
+     - 'fe80::/64'
+     - 'fc00::/7'
+
+  max_upload_size: 100M
+
+  email:
+    enable_notifs: true
+    smtp_host: "smtp.sendgrid.net"
+    smtp_port: 587
+    smtp_user: "apikey"
+    smtp_pass: {{ requiredEnv "GOATCHAT_SMTP_PASSWORD" }}
+    require_transport_security: true
+    notif_from: "Your Friendly %(app)s homeserver <noreply@goatchat.ca>"
+    app_name: Goatchat
+    validation_token_lifetime: 1h
+
+
+  user_directory:
+    enabled: true
+    search_all_users: true
+    prefer_local_users: true
+
+  server_notices:
+    system_mxid_localpart: notices
+    system_mxid_display_name: "Screaming Goat"
+    system_mxid_avatar_url: ""
+    room_name: "Goatchat Notices"
+    room_avatar_url: ""
+    room_topic: "Room used by your server admin to notify you of important information"
+    auto_join: true
+  
+
+ingress:
+  traefikPaths: true
+  annotations:
+    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+
+
+persistence:
+  size: 30Gi    
+
+postgresql:
+  enabled: false    
+externalPostgresql:
+  host: postgres-primary.datastore.svc
+  existingSecret: postgres-pguser-synapse
+  existingSecretPasswordKey: password 
