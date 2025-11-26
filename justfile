@@ -23,6 +23,12 @@ cleanupjobs:
 pgrestart:
     kubectl patch postgrescluster/postgres  --type merge --patch '{"spec":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}'
 
+
+talos-upgrade VERSION NODE:
+    talosctl upgrade  \
+      --image factory.talos.dev/metal-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:{{VERSION}} \
+      -n {{NODE}}
+
 goatchat-register:
     bws run 'curl -v -H '\"'Authorization: SharedSecret $GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET'\"' \
         -H "Content-Type: application/json" \
