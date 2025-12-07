@@ -12,5 +12,5 @@ dependencies:
 - name: postgrescluster
   repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
   version: 5.7.4
-digest: sha256:7be4f89cbc10d297156dd9924e6076659ddd410586434be062dcb6b52c276bde
-generated: "2025-11-25T20:31:00.986270323-07:00"
+digest: sha256:cd960bd2adfc6d5bbfadd4d8ba745904717ba888da8dee9cde7c83ba71e5f8a4
+generated: "2025-12-07T13:19:41.655599535-07:00"
