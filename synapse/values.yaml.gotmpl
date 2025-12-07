@@ -16,10 +16,10 @@ synapse:
   resources:
     requests:
       cpu: 10m
-      memory: 160Mi
+      memory: 128Mi
     limits:
       cpu: '1'
-      memory: 320Mi
+      memory: 192Mi
 
 config:
   macaroonSecretKey: {{ requiredEnv "GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY" }}

@@ -6,3 +6,11 @@ credentials:
   key: {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
 
 repoPassword: {{ requiredEnv "k8UP_REPO_PASSWORD" }}
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi

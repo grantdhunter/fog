@@ -12,6 +12,8 @@ releases:
     namespace: metallb-system
     createNamespace: true
     chart: ../metallb
+    values:
+      - ../metallb/values.yaml.gotmpl
   - name: traefik
     namespace: traefik
     createNamespace: true

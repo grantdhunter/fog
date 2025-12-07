@@ -1,5 +1,21 @@
 instanceSize: 50Gi
-
+instanceMemory: 1Gi
+instanceCPU: 2
+instances:
+  - name: instance1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 192Mi
+      limits:
+        cpu: 2
+        memory: 256Mi
+    dataVolumeClaimSpec:
+      accessModes:
+      - "ReadWriteOnce"
+      resources:
+        requests:
+          storage: 50Gi
 patroni:
   dynamicConfiguration:
     postgresql:
