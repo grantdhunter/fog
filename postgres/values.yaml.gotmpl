@@ -1,0 +1,48 @@
+instanceSize: 50Gi
+
+patroni:
+  dynamicConfiguration:
+    postgresql:
+      pg_hba:
+        - "host all all all scram-sha-256"
+    shared_preload_libraries: pgvector
+users:
+  - name: grant
+    databases:
+      - postgres
+      - synapse
+      - gitea
+      - immich
+    options: "SUPERUSER LOGIN"
+  - name: synapse
+    databases:
+      - synapse
+    options: "LOGIN"
+  - name: gitea
+    databases:
+      - gitea
+    options: "LOGIN"      
+  - name: immich
+    databases:
+      - immich
+    options: "LOGIN"
+
+
+pgBackRestConfig:
+  global:
+    repo1-path: /pgbackrest/datastore/postgres/repo1
+    repo1-retention-full: "10"
+    repo1-retention-full-type: count
+    repo1-s3-key: {{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}
+    repo1-s3-key-secret: {{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}
+    repo1-cipher-pass: {{ requiredEnv "PG_BACKREST_PASSWORD" }}
+
+  repos:
+  - name: repo1
+    s3:
+      bucket: fog
+      endpoint: hel1.your-objectstorage.com
+      region: hel1
+      schedules:
+          full: "0 1 * * 0"
+          differential: "0 1 * * 1-6"

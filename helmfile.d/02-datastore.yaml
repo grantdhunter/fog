@@ -13,29 +13,19 @@ releases:
     createNamespace: true
     chart: crunchydata/pgo
     values:
-      - ../postgres/operator-values.yaml
+      - ../postgres/operator-values.yaml.gotmpl
   - name: postgres
     namespace: datastore
     createNamespace: true
     chart: crunchydata/postgrescluster
     values:
-      - ../postgres/values.yaml
-    setString:
-      - name: pgBackRestConfig.global.repo1-s3-key
-        value: '{{ requiredEnv "HETZNER_S3_ACCESS_KEY" }}'
-      - name: pgBackRestConfig.global.repo1-s3-key-secret
-        value: '{{ requiredEnv "HETZNER_S3_ACCESS_SECRET" }}'
-      - name: pgBackRestConfig.global.repo1-cipher-pass
-        value: '{{ requiredEnv "PG_BACKREST_PASSWORD" }}'
+      - ../postgres/values.yaml.gotmpl
   - name: mariadb
     namespace: datastore
     createNamespace: true
     chart: bitnami/mariadb
     values:
-      - ../mariadb/values.yaml
-    setString:
-      - name: auth.rootPassword
-        value: {{ requiredEnv "MARIADB_ROOT_PASSWORD" }}
+      - ../mariadb/values.yaml.gotmpl
 
   # backup infrastructure
   - name: k8up
@@ -43,4 +33,4 @@ releases:
     createNamespace: true
     chart: k8up-io/k8up
     values:
-      - ../k8up/values.yaml 
+      - ../k8up/values.yaml.gotmpl 

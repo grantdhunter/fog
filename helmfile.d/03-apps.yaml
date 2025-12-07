@@ -40,7 +40,7 @@ releases:
     createNamespace: true
     chart: static-site/static-site
     values:
-      - ../incngrnt-web/values.yaml
+      - ../incngrnt-web/values.yaml.gotmpl
   # ghost blogs
   - name: kgnot-ghost
     namespace: ghost

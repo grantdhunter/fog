@@ -12,14 +12,14 @@ releases:
     createNamespace: true
     chart: grafana/lgtm-distributed
     values:
-      - ../grafana/values.yaml
+      - ../grafana/values.yaml.gotmpl
   - name: alloy
     namespace: grafana
     installed: false    
     createNamespace: true
     chart: grafana/alloy
     values:
-      - ../grafana/alloy_values.yaml
+      - ../grafana/alloy_values.yaml.gotmpl
   - name: kube-state-metrics
     namespace: grafana
     installed: false    

@@ -17,23 +17,13 @@ releases:
     createNamespace: true
     chart: traefik/traefik
     values:
-      - ../traefik/values.yaml
-    setString:
-      - name: certificatesResolvers.letsencrypt.acme.email
-        value: {{ requiredEnv "ACME_EMAIL" }}
-      - name: extraObjects[0].stringData.password
-        value: {{ requiredEnv "TRAEFIK_ADMIN_PASSWORD" }}
+      - ../traefik/values.yaml.gotmpl
   - name: tailscale-operator
     namespace: tailscale
     createNamespace: true
     chart: tailscale/tailscale-operator
     values:
-      - ../tailscale/values.yaml
-    setString:
-      - name: oauth.clientId
-        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}
-      - name: oauth.clientSecret
-        value: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_SECRET" }}
+      - ../tailscale/values.yaml.gotmpl
 
   # storage infrastructure
   - name: rook-ceph
@@ -41,13 +31,13 @@ releases:
     createNamespace: true
     chart: rook-release/rook-ceph
     values:
-      - ../rook-ceph/values.yaml
+      - ../rook-ceph/values.yaml.gotmpl
   - name: rook-ceph-cluster
     namespace: rook-ceph
     createNamespace: true
     chart: rook-release/rook-ceph-cluster
     values:
-      - ../rook-ceph-cluster/values.yaml
+      - ../rook-ceph-cluster/values.yaml.gotmpl
     set:
       - name: operatorNamespace
         value: rook-ceph 
