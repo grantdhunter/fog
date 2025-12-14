@@ -2,10 +2,10 @@ update:
     bws run 'helmfile deps'
 
 deploy ARGS='--output simple -i':
-    bws run 'helmfile apply {{ARGS}}'
+    bws run 'helmfile apply {{ARGS}} --skip-deps'
 
 diff ARGS='':
-    bws run 'helmfile diff --output dyff {{ARGS}}'
+    bws run 'helmfile diff --output dyff {{ARGS}} --skip-deps'
 
 cleanuppods:
     #!/bin/bash
