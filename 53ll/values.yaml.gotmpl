@@ -48,5 +48,21 @@ ingress:
   enabled: true
   hostname: 53ll.ca
   tls: true
-  annotations:
-    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt" 
+  extraTls:
+    - secretName: 53ll-ca-tls
+      hosts:
+        - 53ll.ca
+
+extraDeploy:
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: 53ll-ca
+      namespace: ghost
+    spec:
+      secretName: 53ll-ca-tls
+      issuerRef:
+        name: letsencrypt-53ll
+        kind: ClusterIssuer
+      dnsNames:
+        - 53ll.ca

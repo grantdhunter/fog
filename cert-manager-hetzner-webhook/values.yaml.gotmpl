@@ -1,0 +1,11 @@
+groupName: acme.hetzner.com
+
+certManager:
+  namespace: cert-manager
+  serviceAccountName: cert-manager
+
+secretName:
+  - hetzner-dns-credentials
+
+secrets:
+  apiToken: {{ requiredEnv "HETZNER_API_KEY" }}

@@ -48,8 +48,10 @@ server:
   ingress:
     main:
       enabled: true
-      annotations:
-        traefik.ingress.kubernetes.io/router.tls.certresolver: "letsencrypt"
+      tls:
+        - secretName: photos-incngrnt-ca-tls
+          hosts:
+            - photos.incngrnt.ca
       hosts:
         - host: photos.incngrnt.ca
           paths:
@@ -70,3 +72,5 @@ machine-learning:
             limits:
               cpu: 1
               memory: 384Mi
+
+

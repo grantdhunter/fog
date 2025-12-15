@@ -50,5 +50,21 @@ ingress:
   enabled: true
   hostname: kgnot.ca
   tls: true
-  annotations:
-    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt" 
+  extraTls:
+    - secretName: kgnot-ca-tls
+      hosts:
+        - kgnot.ca
+
+extraDeploy:
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: kgnot-ca
+      namespace: ghost
+    spec:
+      secretName: kgnot-ca-tls
+      issuerRef:
+        name: letsencrypt-kgnot
+        kind: ClusterIssuer
+      dnsNames:
+        - kgnot.ca

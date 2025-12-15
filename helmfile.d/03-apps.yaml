@@ -56,12 +56,12 @@ releases:
       - ../53ll/values.yaml.gotmpl
 
   # dev tools
-  # - name: gitea
-  #   namespace: gitea
-  #   createNamespace: true
-  #   chart: gitea/gitea
-  #   values:
-  #     - ../gitea/values.yaml.gotmpl
+  - name: gitea
+    namespace: gitea
+    createNamespace: true
+    chart: gitea/gitea
+    values:
+      - ../gitea/values.yaml.gotmpl
 
   # backups
   - name: ghost-backup

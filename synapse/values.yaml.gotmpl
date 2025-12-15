@@ -69,8 +69,10 @@ extraConfig:
 
 ingress:
   traefikPaths: true
-  annotations:
-    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+  tls:
+    - secretName: goatchat-ca-tls
+      hosts:
+        - goatchat.ca
 
 
 persistence:

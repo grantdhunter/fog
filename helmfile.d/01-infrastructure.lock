@@ -1,5 +1,11 @@
 version: 0.170.1
 dependencies:
+- name: cert-manager
+  repository: https://charts.jetstack.io
+  version: v1.19.2
+- name: cert-manager-webhook-hetzner
+  repository: https://vadimkim.github.io/cert-manager-webhook-hetzner
+  version: 1.4.0
 - name: rook-ceph
   repository: https://charts.rook.io/release
   version: v1.18.8
@@ -12,5 +18,5 @@ dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
   version: 37.4.0
-digest: sha256:66b2e4b590af3ee51f97d61435400977ceb8d70ddfc50d638ccfaeede79e8a6f
-generated: "2025-12-07T13:19:28.002423348-07:00"
+digest: sha256:23d6b70fcb5e17bfa1e8fdc576a8057128b3bec68020fa8275a553b5caa23e99
+generated: "2025-12-14T14:13:45.546956484-07:00"

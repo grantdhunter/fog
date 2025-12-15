@@ -48,24 +48,17 @@ ingress:
       paths:
         - path: "/"
           pathType: Prefix
-  annotations:
-    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
+  tls:
+    - secretName: git-incngrnt-ca-tls
+      hosts:
+        - git.incngrnt.ca
 
 service:
   ssh:
     type: ClusterIP
     port: 22
     clusterIP:
-      
-actions:
-  enabled: true
-  giteaRootURL: https://git.incngrnt.ca
-  existingSecret: gitea-runner-token
-  existingSecretKey: token
-  provisioning:
-    enabled: false
-  persistence:
-    enabled: false
+
 redis:
   enabled: true
 redis-cluster:
@@ -77,6 +70,18 @@ postgresql-ha:
 
 
 extraDeploy:
+- apiVersion: cert-manager.io/v1
+  kind: Certificate
+  metadata:
+    name: git-incngrnt-ca
+    namespace: gitea
+  spec:
+    secretName: git-incngrnt-ca-tls
+    issuerRef:
+      name: letsencrypt-incngrnt
+      kind: ClusterIssuer
+    dnsNames:
+      - git.incngrnt.ca
 - apiVersion: traefik.io/v1alpha1
   kind: IngressRouteTCP
   metadata:

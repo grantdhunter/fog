@@ -13,10 +13,13 @@ resources:
 
 ingress:
   enabled: true
-  annotations:
-    "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"  
+  tls:
+    - secretName: incngrnt-ca-tls
+      hosts:
+        - incngrnt.ca
   hosts:
     - host: incngrnt.ca
       paths:
         - path: /
           pathType: ImplementationSpecific
+

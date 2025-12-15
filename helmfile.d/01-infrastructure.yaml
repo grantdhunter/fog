@@ -5,6 +5,10 @@ repositories:
     url: https://traefik.github.io/charts
   - name: tailscale
     url: https://pkgs.tailscale.com/helmcharts
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: cert-manager-webhook-hetzner
+    url: https://vadimkim.github.io/cert-manager-webhook-hetzner
 
 releases:
   # networking
@@ -14,6 +18,24 @@ releases:
     chart: ../metallb
     values:
       - ../metallb/values.yaml.gotmpl
+  - name: cert-manager
+    namespace: cert-manager
+    createNamespace: true
+    chart: jetstack/cert-manager
+    values:
+      - ../cert-manager/values.yaml.gotmpl
+  - name: cert-manager-webhook-hetzner
+    namespace: cert-manager
+    createNamespace: true
+    chart: cert-manager-webhook-hetzner/cert-manager-webhook-hetzner
+    values:
+      - ../cert-manager-hetzner-webhook/values.yaml.gotmpl
+  - name: cert-manager-issuers
+    namespace: cert-manager
+    createNamespace: true
+    chart: ../cert-manager-issuers
+    values:
+      - ../cert-manager-issuers/values.yaml.gotmpl    
   - name: traefik
     namespace: traefik
     createNamespace: true

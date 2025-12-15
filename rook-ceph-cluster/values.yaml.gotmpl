@@ -37,9 +37,26 @@ ingress:
         name: fog.incngrnt.ca
         path: /fog/ceph
         pathType: Prefix
+      tls:
+        - secretName: fog-incngrnt-ca-tls
+          hosts:
+            - fog.incngrnt.ca
       annotations:
-        "traefik.ingress.kubernetes.io/router.tls.certresolver": "letsencrypt"
         "traefik.ingress.kubernetes.io/router.middlewares": "rook-ceph-ceph-stripprefix@kubernetescrd"
+
+extraDeploy:
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: fog-ceph-incngrnt-ca
+      namespace: rook-ceph
+    spec:
+      secretName: fog-incngrnt-ca-tls
+      issuerRef:
+        name: letsencrypt-incngrnt
+        kind: ClusterIssuer
+      dnsNames:
+        - fog.incngrnt.ca
 
 cephFileSystems:
   - name: ceph-filesystem
