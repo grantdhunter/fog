@@ -12,6 +12,7 @@ repositories:
   - name: incngrnt
     url: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
 
+lockFilePath: ./helmfile.d/03-apps.lock
 releases:
   # goatchat matrix
   - name: goatchat

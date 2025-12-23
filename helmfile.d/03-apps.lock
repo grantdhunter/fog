@@ -1,34 +1,37 @@
-version: 0.170.1
+version: 1.2.3
 dependencies:
-- name: ghost
-  repository: https://charts.bitnami.com/bitnami
-  version: 25.0.4
-- name: ghost
-  repository: https://charts.bitnami.com/bitnami
-  version: 25.0.4
-- name: immich
-  repository: https://immich-app.github.io/immich-charts
-  version: 0.10.3
-- name: k8up-backup
-  repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-  version: 0.0.3
-- name: k8up-backup
-  repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-  version: 0.0.3
-- name: k8up-backup
-  repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-  version: 0.0.3
-- name: k8up-backup
-  repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-  version: 0.0.3
-- name: matrix-registration
-  repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-  version: 0.1.0
-- name: matrix-synapse
-  repository: https://ananace.gitlab.io/charts
-  version: 3.12.17
-- name: static-site
-  repository: git+https://github.com/cfpb/static-site@charts?ref=main
-  version: 0.1.1
-digest: sha256:e957d861b7351e1e89af29b29e8de19621c9069131669d32217276e8118e634b
-generated: "2025-12-14T14:14:24.483935436-07:00"
+  - name: ghost
+    repository: https://charts.bitnami.com/bitnami
+    version: 25.0.4
+  - name: ghost
+    repository: https://charts.bitnami.com/bitnami
+    version: 25.0.4
+  - name: gitea
+    repository: https://dl.gitea.io/charts
+    version: 12.4.0
+  - name: immich
+    repository: https://immich-app.github.io/immich-charts
+    version: 0.10.3
+  - name: k8up-backup
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.0.3
+  - name: k8up-backup
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.0.3
+  - name: k8up-backup
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.0.3
+  - name: k8up-backup
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.0.3
+  - name: matrix-registration
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.1.0
+  - name: matrix-synapse
+    repository: https://ananace.gitlab.io/charts
+    version: 3.12.17
+  - name: static-site
+    repository: git+https://github.com/cfpb/static-site@charts?ref=main
+    version: 0.1.1
+digest: sha256:b44d082b71203ca6bb4fd881d8c6ce71575db556f432bbcc46078a535c8cd9c3
+generated: "2025-12-23T10:31:37.404126839-07:00"

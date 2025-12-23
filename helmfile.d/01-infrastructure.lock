@@ -1,22 +1,22 @@
-version: 0.170.1
+version: 1.2.3
 dependencies:
-- name: cert-manager
-  repository: https://charts.jetstack.io
-  version: v1.19.2
-- name: cert-manager-webhook-hetzner
-  repository: https://vadimkim.github.io/cert-manager-webhook-hetzner
-  version: 1.4.0
-- name: rook-ceph
-  repository: https://charts.rook.io/release
-  version: v1.18.8
-- name: rook-ceph-cluster
-  repository: https://charts.rook.io/release
-  version: v1.18.8
-- name: tailscale-operator
-  repository: https://pkgs.tailscale.com/helmcharts
-  version: 1.90.9
-- name: traefik
-  repository: https://traefik.github.io/charts
-  version: 37.4.0
-digest: sha256:23d6b70fcb5e17bfa1e8fdc576a8057128b3bec68020fa8275a553b5caa23e99
-generated: "2025-12-14T14:13:45.546956484-07:00"
+  - name: cert-manager
+    repository: https://charts.jetstack.io
+    version: v1.19.2
+  - name: cert-manager-webhook-hetzner
+    repository: https://vadimkim.github.io/cert-manager-webhook-hetzner
+    version: 1.4.2
+  - name: rook-ceph
+    repository: https://charts.rook.io/release
+    version: v1.18.8
+  - name: rook-ceph-cluster
+    repository: https://charts.rook.io/release
+    version: v1.18.8
+  - name: tailscale-operator
+    repository: https://pkgs.tailscale.com/helmcharts
+    version: 1.92.4
+  - name: traefik
+    repository: https://traefik.github.io/charts
+    version: 38.0.1
+digest: sha256:3297bc0c10765abe170881882f7daf441a4dd735ed0ee7d1f4233692e8888c3c
+generated: "2025-12-23T10:31:34.409765694-07:00"

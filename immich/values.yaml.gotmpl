@@ -3,7 +3,7 @@ controllers:
     containers:
       main:
         image:
-          tag: v2.3.1
+          tag: v2.4.1
 
         env:
           DB_HOSTNAME: {{ exec "kubectl" (list "-n" "immich" "get" "secrets" "postgres-pguser-immich" "-ogo-template='{{.data.host | base64decode }}'") }}
@@ -44,7 +44,7 @@ server:
               memory: 256Mi
             limits:
               cpu: 1
-              memory: 512Mi
+              memory: 700Mi
   ingress:
     main:
       enabled: true
@@ -71,6 +71,6 @@ machine-learning:
               memory: 128Mi
             limits:
               cpu: 1
-              memory: 384Mi
+              memory: 1Gi
 
 

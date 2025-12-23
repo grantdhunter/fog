@@ -10,6 +10,7 @@ repositories:
   - name: cert-manager-webhook-hetzner
     url: https://vadimkim.github.io/cert-manager-webhook-hetzner
 
+lockFilePath: ./helmfile.d/01-infrastructure.lock
 releases:
   # networking
   - name: metallb
