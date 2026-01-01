@@ -38,3 +38,17 @@ goatchat-register-review:
     bws run 'curl -v -H '\"'Authorization: SharedSecret $GOATCHAT_REGISTRATION_ADMIN_API_SHARE_SECRET'\"' \
         -H "Content-Type: application/json" \
         https://goatchat.ca/gate/api/token' | jq
+
+refresh-client-cert:
+    #!/bin/bash
+    yq -r .machine.ca.crt controlplane.yaml | base64 -d > ca.crt
+    yq -r .machine.ca.key controlplane.yaml | base64 -d > ca.key
+    talosctl gen key --name admin           
+    talosctl gen csr --key admin.key --ip 127.0.0.1
+    talosctl gen crt --ca ca --csr admin.csr --name admin
+    yq -i '.contexts.fog.ca = "'"$(base64 -w0 ca.crt)"\
+    '" | .contexts.fog.crt = "'"$(base64 -w0 admin.crt)"\
+    '" | .contexts.fog.key = "'"$(base64 -w0 admin.key)"'"' \
+    .config/talosconfig
+
+    talosctl kubeconfig .config/kubeconfig -n 192.168.1.43

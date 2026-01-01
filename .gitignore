@@ -17,4 +17,4 @@ kgnot/config.production.json
 *.pub
 
 .envrc
-.kubeconfig
+.config
