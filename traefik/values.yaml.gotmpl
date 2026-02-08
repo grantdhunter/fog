@@ -60,11 +60,13 @@ ingressRoute:
 
 ports:
   websecure:
-    middlewares:
-      - traefik-rate-limit@kubernetescrd
+    http:
+      middlewares:
+        - traefik-rate-limit@kubernetescrd
   web:
-    middlewares:
-      - traefik-redirectscheme@kubernetescrd      
+    http:
+      middlewares:
+        - traefik-redirectscheme@kubernetescrd      
   ssh:
     port: 2222
     expose:
