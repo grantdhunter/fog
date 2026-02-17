@@ -64,7 +64,7 @@ extraDeploy:
     spec:
       secretName: kgnot-ca-tls
       issuerRef:
-        name: letsencrypt-kgnot
+        name: letsencrypt
         kind: ClusterIssuer
       dnsNames:
         - kgnot.ca

@@ -116,7 +116,7 @@ extraObjects:
     spec:
       secretName: fog-incngrnt-ca-tls
       issuerRef:
-        name: letsencrypt-incngrnt
+        name: letsencrypt
         kind: ClusterIssuer
       dnsNames:
         - fog.incngrnt.ca
@@ -130,7 +130,7 @@ extraObjects:
     spec:
       secretName: goatchat-ca-tls
       issuerRef:
-        name: letsencrypt-goatchat
+        name: letsencrypt
         kind: ClusterIssuer
       dnsNames:
         - goatchat.ca
@@ -142,7 +142,7 @@ extraObjects:
     spec:
       secretName: incngrnt-ca-tls
       issuerRef:
-        name: letsencrypt-incngrnt
+        name: letsencrypt
         kind: ClusterIssuer
       dnsNames:
         - incngrnt.ca
@@ -154,7 +154,7 @@ extraObjects:
     spec:
       secretName: photos-incngrnt-ca-tls
       issuerRef:
-        name: letsencrypt-incngrnt
+        name: letsencrypt
         kind: ClusterIssuer
       dnsNames:
         - photos.incngrnt.ca

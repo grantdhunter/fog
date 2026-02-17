@@ -7,8 +7,8 @@ repositories:
     url: https://pkgs.tailscale.com/helmcharts
   - name: jetstack
     url: https://charts.jetstack.io
-  - name: cert-manager-webhook-hetzner
-    url: https://vadimkim.github.io/cert-manager-webhook-hetzner
+  - name: hcloud 
+    url: https://charts.hetzner.cloud
 
 lockFilePath: ./helmfile.d/01-infrastructure.lock
 releases:
@@ -28,9 +28,7 @@ releases:
   - name: cert-manager-webhook-hetzner
     namespace: cert-manager
     createNamespace: true
-    chart: cert-manager-webhook-hetzner/cert-manager-webhook-hetzner
-    values:
-      - ../cert-manager-hetzner-webhook/values.yaml.gotmpl
+    chart: hcloud/cert-manager-webhook-hetzner
   - name: cert-manager-issuers
     namespace: cert-manager
     createNamespace: true
