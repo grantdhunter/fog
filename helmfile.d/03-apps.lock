@@ -1,5 +1,11 @@
 version: 1.2.3
 dependencies:
+  - name: audiobookshelf
+    repository: https://k8s-home-lab.github.io/helm-charts/
+    version: 2.0.1
+  - name: calibre-web
+    repository: https://k8s-home-lab.github.io/helm-charts/
+    version: 9.1.0
   - name: ghost
     repository: https://charts.bitnami.com/bitnami
     version: 25.0.4
@@ -33,5 +39,5 @@ dependencies:
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:e206c5e3e8104780c61d1322d1b1498907b69351dbee5d92f24f864975b1efe0
-generated: "2026-03-16T10:29:28.885610419-06:00"
+digest: sha256:5fa6810fb7db97d0ff56fc5dcf272fd59202bad89b36c5b30ce212db7956edb9
+generated: "2026-03-21T15:54:36.111194061-06:00"

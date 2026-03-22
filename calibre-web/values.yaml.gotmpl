@@ -1,0 +1,26 @@
+env:
+  TZ: America/Edmonton
+  DOCKER_MODS: linuxserver/mods:universal-calibre
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: calibre.incngrnt.ca
+        paths:
+        - path: /
+    tls:
+      - secretName: calibre-incngrnt-ca-tls
+        hosts:
+          - calibre.incngrnt.ca
+
+persistence:
+  config:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Mi
+    storageClassName: ceph-block      
+  books:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClassName: ceph-block      

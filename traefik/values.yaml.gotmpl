@@ -158,3 +158,27 @@ extraObjects:
         kind: ClusterIssuer
       dnsNames:
         - photos.incngrnt.ca
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: calibre-incngrnt-ca
+      namespace: calibre
+    spec:
+      secretName: calibre-incngrnt-ca-tls
+      issuerRef:
+        name: letsencrypt
+        kind: ClusterIssuer
+      dnsNames:
+        - calibre.incngrnt.ca
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: audiobookshelf-incngrnt-ca
+      namespace: audiobookshelf
+    spec:
+      secretName: audiobookshelf-incngrnt-ca-tls
+      issuerRef:
+        name: letsencrypt
+        kind: ClusterIssuer
+      dnsNames:
+        - audiobookshelf.incngrnt.ca

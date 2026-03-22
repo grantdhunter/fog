@@ -11,7 +11,9 @@ repositories:
     url: git+https://github.com/cfpb/static-site@charts?ref=main
   - name: incngrnt
     url: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-
+  - name: k8s-home-lab
+    url:  https://k8s-home-lab.github.io/helm-charts/
+    
 lockFilePath: ./helmfile.d/03-apps.lock
 releases:
   # goatchat matrix
@@ -63,6 +65,20 @@ releases:
     chart: gitea/gitea
     values:
       - ../gitea/values.yaml.gotmpl
+
+  # books
+  - name: calibre-web
+    namespace: calibre
+    createNamespace: true
+    chart: k8s-home-lab/calibre-web
+    values:
+      - ../calibre-web/values.yaml.gotmpl
+  - name: audiobookshelf
+    namespace: audiobookshelf
+    createNamespace: true
+    chart: k8s-home-lab/audiobookshelf
+    values:
+      - ../audiobookshelf/values.yaml.gotmpl
 
   # backups
   - name: ghost-backup

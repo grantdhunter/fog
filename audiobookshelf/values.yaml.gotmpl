@@ -1,0 +1,30 @@
+env:
+  TZ: America/Edmonton
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: audiobookshelf.incngrnt.ca
+        paths:
+        - path: /
+    tls:
+      - secretName: audiobookshelf-incngrnt-ca-tls
+        hosts:
+          - audiobookshelf.incngrnt.ca
+
+persistence:
+  config:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Mi
+    storageClassName: ceph-block      
+  metadata:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    storageClassName: ceph-block      
+  media:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    storageClassName: ceph-block      
