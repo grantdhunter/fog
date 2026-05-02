@@ -2,21 +2,21 @@ version: 1.2.3
 dependencies:
   - name: cert-manager
     repository: https://charts.jetstack.io
-    version: v1.20.0
+    version: v1.20.2
   - name: cert-manager-webhook-hetzner
     repository: https://charts.hetzner.cloud
-    version: 0.6.7
+    version: 0.7.0
   - name: rook-ceph
     repository: https://charts.rook.io/release
-    version: v1.19.2
+    version: v1.19.5
   - name: rook-ceph-cluster
     repository: https://charts.rook.io/release
-    version: v1.19.2
+    version: v1.19.5
   - name: tailscale-operator
     repository: https://pkgs.tailscale.com/helmcharts
-    version: 1.94.2
+    version: 1.96.5
   - name: traefik
     repository: https://traefik.github.io/charts
-    version: 39.0.6
-digest: sha256:ab4571859e9f203e981e51fddd6eb64e39e327d1f469aae0aebd5f53cf0ec025
-generated: "2026-03-21T15:54:30.181487309-06:00"
+    version: 39.0.8
+digest: sha256:331463f20fbe61ed710967ada172053dc52dda7efc4def7fe8f0c714dfc7a070
+generated: "2026-05-02T10:45:23.971292747-06:00"

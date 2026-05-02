@@ -2,15 +2,15 @@ version: 1.2.3
 dependencies:
   - name: k8up
     repository: https://k8up-io.github.io/k8up
-    version: 4.8.7
+    version: 4.9.0
   - name: mariadb
     repository: https://charts.bitnami.com/bitnami
-    version: 25.0.5
+    version: 25.0.10
   - name: pgo
     repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
     version: 5.8.1
   - name: postgrescluster
     repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
     version: 5.7.4
-digest: sha256:15aa54bcbc82cc0a0f2fde31f8a9999598a4ac8d8ae8ef4ea5d2cbc361443075
-generated: "2026-03-21T14:15:00.978030866-06:00"
+digest: sha256:916256c7bd616429ada39f49fa390c5a13b48ce65b9451eedf0ecbf60a42ef88
+generated: "2026-05-02T10:45:22.189650565-06:00"
