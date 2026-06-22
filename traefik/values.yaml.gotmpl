@@ -34,6 +34,7 @@ affinity:
     
 additionalArguments:
  - "--api.basePath=/fog/traefik"
+ - "--entrypoints.websecure.transport.respondingtimeouts.readtimeout=120"
 
 persistence:
   enabled: false
