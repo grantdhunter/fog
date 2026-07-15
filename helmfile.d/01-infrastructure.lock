@@ -1,22 +1,25 @@
 version: 1.2.3
 dependencies:
+  - name: ceph-csi-drivers
+    repository: https://ceph.github.io/ceph-csi-operator
+    version: 1.0.4
   - name: cert-manager
     repository: https://charts.jetstack.io
-    version: v1.20.2
+    version: v1.21.0
   - name: cert-manager-webhook-hetzner
     repository: https://charts.hetzner.cloud
-    version: 0.7.0
+    version: 0.8.0
   - name: rook-ceph
     repository: https://charts.rook.io/release
-    version: v1.20.1
+    version: v1.20.2
   - name: rook-ceph-cluster
     repository: https://charts.rook.io/release
-    version: v1.20.1
+    version: v1.20.2
   - name: tailscale-operator
     repository: https://pkgs.tailscale.com/helmcharts
     version: 1.98.4
   - name: traefik
     repository: https://traefik.github.io/charts
-    version: 41.0.0
-digest: sha256:136ebb8590cb490a700ed1382e5c5b02f2e054a5d4a5dee59446fdb9a3fd0ee3
-generated: "2026-06-22T10:04:23.320029485-06:00"
+    version: 41.0.2
+digest: sha256:a1492fa5400875bfa07546304bd721b0bb144daed784890c3f7d15bba368b6e8
+generated: "2026-07-15T08:54:18.801317262-06:00"

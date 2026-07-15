@@ -1,13 +1,15 @@
 repositories:
   - name: rook-release
     url:  https://charts.rook.io/release
+  - name: ceph-csi-operator
+    url: https://ceph.github.io/ceph-csi-operator
   - name: traefik
     url: https://traefik.github.io/charts
   - name: tailscale
     url: https://pkgs.tailscale.com/helmcharts
   - name: jetstack
     url: https://charts.jetstack.io
-  - name: hcloud 
+  - name: hcloud
     url: https://charts.hetzner.cloud
 
 lockFilePath: ./helmfile.d/01-infrastructure.lock
@@ -34,7 +36,7 @@ releases:
     createNamespace: true
     chart: ../cert-manager-issuers
     values:
-      - ../cert-manager-issuers/values.yaml.gotmpl    
+      - ../cert-manager-issuers/values.yaml.gotmpl
   - name: traefik
     namespace: traefik
     createNamespace: true
@@ -53,14 +55,22 @@ releases:
     namespace: rook-ceph
     createNamespace: true
     chart: rook-release/rook-ceph
+    version: 1.20.2
     values:
       - ../rook-ceph/values.yaml.gotmpl
+  - name: ceph-csi-drivers
+    namespace: rook-ceph
+    createNamespace: true
+    chart: ceph-csi-operator/ceph-csi-drivers
+    values:
+      - ../ceph-csi-drivers/values.yaml.gotmpl
   - name: rook-ceph-cluster
     namespace: rook-ceph
     createNamespace: true
     chart: rook-release/rook-ceph-cluster
+    version: 1.20.2
     values:
       - ../rook-ceph-cluster/values.yaml.gotmpl
     set:
       - name: operatorNamespace
-        value: rook-ceph 
+        value: rook-ceph
