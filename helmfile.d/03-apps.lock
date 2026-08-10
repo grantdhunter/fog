@@ -14,7 +14,7 @@ dependencies:
     version: 25.0.4
   - name: gitea
     repository: https://dl.gitea.io/charts
-    version: 12.6.0
+    version: 12.7.0
   - name: immich
     repository: https://immich-app.github.io/immich-charts
     version: 0.12.0
@@ -35,9 +35,9 @@ dependencies:
     version: 0.1.0
   - name: matrix-synapse
     repository: https://ananace.gitlab.io/charts
-    version: 3.12.31
+    version: 3.12.35
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:02095ab4a4e86a172518e248e3863126116ba0895f58c2e21d1ec39d28ef3ac6
-generated: "2026-07-15T08:54:24.15674129-06:00"
+digest: sha256:9bd1f516106a84409b1b7d0f11068bde3bf4c7495632856430b93251370171a9
+generated: "2026-08-10T13:12:50.767781804-06:00"
