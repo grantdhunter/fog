@@ -5,12 +5,12 @@ dependencies:
     version: 4.10.0
   - name: mariadb
     repository: https://charts.bitnami.com/bitnami
-    version: 27.0.7
+    version: 27.0.8
   - name: pgo
     repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
     version: 5.8.1
   - name: postgrescluster
     repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
     version: 5.7.4
-digest: sha256:a02d6e549083187b67a74ad10c856e0e417f369a5d08157a2109aefd254a0c2f
-generated: "2026-08-24T09:21:32.943843259-06:00"
+digest: sha256:74646bdc311fe190243dce02744a8bbf795b9e2d312b0f6929d991ffc56b2f78
+generated: "2026-09-06T20:22:54.629810458-06:00"

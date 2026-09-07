@@ -20,16 +20,16 @@ dependencies:
     version: 0.12.0
   - name: k8up-backup
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.3
+    version: 0.0.4
   - name: k8up-backup
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.3
+    version: 0.0.4
   - name: k8up-backup
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.3
+    version: 0.0.4
   - name: k8up-backup
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.3
+    version: 0.0.4
   - name: matrix-registration
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
     version: 0.1.0
@@ -39,5 +39,5 @@ dependencies:
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:b6bf93ded404ca366c70f9357be9fa6349d71eb29d57f9610efdfa4c8b8ac4d3
-generated: "2026-08-24T09:21:38.166828268-06:00"
+digest: sha256:184570ac5680606f5713fb47743846c865a2b0fa686bfbe7847c795583e1ebf8
+generated: "2026-09-06T20:23:00.234707255-06:00"

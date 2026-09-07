@@ -2,6 +2,10 @@ k8up:
   envVars:
     - name: BACKUP_GLOBAL_CONCURRENT_BACKUP_JOBS_LIMIT
       values: 1
+    - name: BACKUP_GLOBAL_CONCURRENT_CHECK_JOBS_LIMIT
+      values: 1
+    - name: BACKUP_GLOBAL_CONCURRENT_PRUNE_JOBS_LIMIT
+      values: 1
   resources:
     requests:
       cpu: 10m
