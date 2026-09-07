@@ -23,6 +23,12 @@ cleanupjobs:
 pgrestart:
     kubectl patch postgrescluster/postgres  --type merge --patch '{"spec":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}'
 
+pgdump db_name:
+    #!/bin/bash
+    pod_name=$(kubectl get pod -lpostgres-operator.crunchydata.com/role=master -o=name | sed "s/^.\{4\}//")
+    kubectl exec -it $pod_name database -- \
+    pg_dump -U postgres -d {{db_name}} --file=/tmp/pgdump --format=c --quote-all-identifiers --verbose
+    kubectl cp $pod_name:/tmp/pgdump ./{{db_name}}_pgdump
 
 talos-upgrade VERSION NODE:
     talosctl upgrade  \
