@@ -35,9 +35,9 @@ dependencies:
     version: 0.1.0
   - name: matrix-synapse
     repository: https://ananace.gitlab.io/charts
-    version: 3.12.36
+    version: 3.12.37
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:212adcd81a2970bc9ecf12a1e9c200e62e8201f2e194ba563d1682967f1ed825
-generated: "2026-09-06T23:14:51.876622943-06:00"
+digest: sha256:71da637606209d74d9f88d2b9ae48aac03ae8d26a8b314a405726ad75d1d7269
+generated: "2026-09-14T17:19:37.700189741-06:00"
