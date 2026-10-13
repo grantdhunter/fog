@@ -45,7 +45,7 @@ sudo dd if=metal-amd64.iso of=/dev/sdc bs=4M
 2. Start the machine with the USB. Once it has booted **REMOVE** the USB so that it doesn't get selected as an install location.
 3. Apply config to install the OS to disk
 ```sh
-talosctl apply-config [--insecure] -n <ips> controlplane.yaml
+talosctl apply-config [--insecure] -n <ips> -f controlplane.yaml
 ```
 ### Update context
 ```sh
