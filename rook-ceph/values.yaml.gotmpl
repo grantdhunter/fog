@@ -1,7 +1,8 @@
 resources:
   requests:
-    cpu: 100m
-    memory: 512Mi
+    cpu: 50m
+    # Operator is control-plane-ish: it mostly idles between reconcile loops.
+    # 512Mi of reservation was the single largest non-OSD request in the cluster.
+    memory: 128Mi
   limits:
-    cpu: 1
     memory: 1Gi

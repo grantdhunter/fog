@@ -2,14 +2,18 @@ operatorConfig:
   extraEnv:
     - name: PROXY_PRIORITY_CLASS_NAME
       value: critical
+  resources:
+    requests:
+      cpu: 10m
+      memory: 48Mi
+    limits:
+      memory: 128Mi
 
-resources:
-  requests:
-    cpu: 10m
-    memory: 48Mi
-  limits:
-    cpu: 500m
-    memory: 64Mi
+# Make the fog ProxyClass the default for proxies created from Ingress and
+# LoadBalancer services so they don't land as BestEffort pods. Connectors do not
+# honour this and need spec.proxyClass (see connector.yaml).
+proxyConfig:
+  defaultProxyClass: fog
 
 oauth:
   clientId: {{ requiredEnv "TAILSCALE_OAUTH_CLIENT_ID" }}

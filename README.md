@@ -10,7 +10,7 @@ Like the cloud but local.
 - just (https://just.systems/man/en/ )
 ## Talos Cluster
 ### Hardware
-- HP ProDesk 400 G3 (x3)
+- HP ProDesk 400 G3 16Gib (x3)
 - Seagate Iron Wolf 2Tb (x2)
 - Western Digital Red Pro 2Tb
 - Sabrent HDD Docking Station (3x)

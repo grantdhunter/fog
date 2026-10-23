@@ -9,5 +9,6 @@ resources:
     cpu: 10m
     memory: 64Mi
   limits:
-    cpu: 500m
-    memory: 64Mi 
+    # memory limit was equal to the request (64Mi) - no headroom for the
+    # registration flow. CPU limit removed: it has no effect on scheduling.
+    memory: 192Mi 

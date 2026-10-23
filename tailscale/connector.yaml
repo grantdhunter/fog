@@ -3,6 +3,9 @@ kind: Connector
 metadata:
   name: home-cidr
 spec:
+  # Applies the resource requests/limits defined in proxyclass-home.yaml to the
+  # proxy StatefulSet this Connector creates.
+  proxyClass: fog
   tags:
   - "tag:k8s"
   hostname: home-cidr

@@ -11,5 +11,7 @@ k8up:
       cpu: 10m
       memory: 64Mi
     limits:
-      cpu: 500m
-      memory: 64Mi
+      # memory limit == request meant any spike (e.g. a reconcile of many
+      # Schedules) OOMKilled the controller. Leave headroom; CPU is uncapped
+      # because CPU limits do not affect scheduling and only throttle.
+      memory: 192Mi

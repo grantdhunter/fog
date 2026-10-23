@@ -41,6 +41,15 @@ gitea:
 strategy:
   type: Recreate
 
+# Requests make the pod visible to the scheduler; without them gitea is
+# BestEffort and is the first candidate for eviction under node pressure.
+resources:
+  requests:
+    cpu: 50m
+    memory: 256Mi
+  limits:
+    memory: 1Gi
+
 ingress:
   enabled: true
   hosts:
@@ -61,6 +70,13 @@ service:
 
 valkey:
   enabled: true
+  primary:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 48Mi
+      limits:
+        memory: 256Mi
 valkey-cluster:
   enabled: false
 postgresql:

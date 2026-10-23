@@ -8,8 +8,9 @@ resources:
     cpu: 10m
     memory: 32Mi
   limits:
-    cpu: 500m
-    memory: 32Mi
+    # limit == request (32Mi) left no headroom for the nginx worker; CPU limit
+    # removed - it does not affect scheduling, only throttles.
+    memory: 96Mi
 
 ingress:
   enabled: true

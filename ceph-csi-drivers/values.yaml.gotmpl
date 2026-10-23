@@ -7,6 +7,10 @@
 # If the Rook operator is installed in a namespace other than rook-ceph, replace
 # "rook-ceph" in the driver names below with your operator namespace.
 
+# NOTE: driver.yaml renders `nodePlugin.resources.<container> | default dict`, so
+# omitting a container emits an explicit `{}` into the CR, which can wipe the
+# operator's built-in sidecar defaults. Every container is therefore listed
+# explicitly so the requests are deterministic and visible to the scheduler.
 operatorConfig:
   namespace: rook-ceph # namespace:operator
   driverSpecDefaults:
@@ -14,8 +18,52 @@ operatorConfig:
       name: rook-csi-operator-image-set-configmap
     nodePlugin:
       priorityClassName: system-node-critical
+      resources:
+        registrar:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        liveness:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        logRotator:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        addons:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        plugin:
+          requests: {cpu: 20m, memory: 64Mi}
+          limits: {memory: 512Mi}
     controllerPlugin:
       priorityClassName: system-cluster-critical
+      resources:
+        attacher:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits: {memory: 128Mi}
+        snapshotter:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits: {memory: 128Mi}
+        resizer:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits: {memory: 128Mi}
+        provisioner:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits: {memory: 128Mi}
+        omapGenerator:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits: {memory: 128Mi}
+        liveness:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        logRotator:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        addons:
+          requests: {cpu: 5m, memory: 16Mi}
+          limits: {memory: 64Mi}
+        plugin:
+          requests: {cpu: 50m, memory: 64Mi}
+          limits: {memory: 256Mi}
 
 drivers:
   rbd:

@@ -9,7 +9,9 @@ instances:
         cpu: 100m
         memory: 192Mi
       limits:
-        cpu: 2
+        # No CPU limit: the operator's instanceCPU: 2 is what the scheduler and
+        # the operator's own sizing logic use; a CFS limit here only throttles
+        # autovacuum and checkpointing without changing pod placement.
         memory: 1Gi
     dataVolumeClaimSpec:
       accessModes:

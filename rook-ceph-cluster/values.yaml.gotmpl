@@ -6,34 +6,54 @@ cephClusterSpec:
     count: 3
     allowMultiplePerNode: false
 
+  # A 3-node homelab does not need an active+standby mgr pair. Each mgr costs
+  # 256Mi request / 704Mi limit (plus mgr-sidecar), which is pure fixed overhead
+  # per node and the first thing that blocks co-scheduling on small nodes.
+  mgr:
+    count: 1
+
   storage:
     useAllNodes: true
     useAllDevices: false
     deviceFilter: "^sda"
     config:
-      osd_memory_target: "1073741824"  # 1GB per OSD to maintain 70% node capacity
+      # osd_memory_target must match the osd request/limit below: the OSD is a
+      # long-running cache-filling process, so an under-sized request lets the
+      # scheduler overpack the node and an over-sized limit lets it OOM siblings.
+      osd_memory_target: "1073741824"  # 1GB per OSD
   resources:
     mgr:
       requests:
         cpu: 50m
         memory: 256Mi
       limits:
-        cpu: "1"
         memory: 704Mi
     mon:
       requests:
         cpu: 100m
         memory: 256Mi
       limits:
-        cpu: "1"
-        memory: 2Gi
+        # 3 mons with ~zero load; the previous 2Gi limit was 8x the request and
+        # made the worst-case per-node footprint look 1.75Gi worse than it is.
+        memory: 1Gi
     osd:
+      # Guaranteed QoS (request == limit) so the scheduler reserves what the
+      # OSD will actually use. CPU is left unlimited: CPU limits don't change
+      # bin-packing and only throttle the OSD during backfill.
       requests:
         cpu: 100m
-        memory: 896Mi
+        memory: 1Gi
       limits:
-        cpu: "1"
-        memory: 1280Mi
+        memory: 1Gi
+    # crashcollector is a DaemonSet (one pod per node) and was previously
+    # inherited from the chart with a 100m CPU request, which is a large share
+    # of a ProDesk's 4 cores for a pod that only reads /var/lib/rook/crash.
+    crashcollector:
+      requests:
+        cpu: 10m
+        memory: 60Mi
+      limits:
+        memory: 60Mi
 
 ingress:
   dashboard:

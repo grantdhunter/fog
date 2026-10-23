@@ -104,4 +104,11 @@ releases:
     chart: incngrnt/k8up-backup
     createNamespace: true    
     values:
-      - ../k8up-backup/values.yaml.gotmpl  
+      - ../k8up-backup/values.yaml.gotmpl
+
+  # Namespace guardrails (default requests/limits for pods that declare none).
+  # Listed last so the namespaces it targets already exist; it only affects pod
+  # admission from here on. Run `just update` to refresh the lock file.
+  - name: resource-defaults
+    namespace: default
+    chart: ../resource-defaults

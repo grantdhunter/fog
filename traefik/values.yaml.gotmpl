@@ -6,8 +6,9 @@ resources:
     cpu: 50m
     memory: 64Mi
   limits:
-    cpu: 1
-    memory: 128Mi
+    # No CPU limit: limits do not affect scheduler placement and only throttle
+    # the proxy under load. Memory is what protects the node.
+    memory: 256Mi
 
 updateStrategy:
   type: RollingUpdate

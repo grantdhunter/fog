@@ -17,19 +17,27 @@ immich:
     library: 
       existingClaim: immich-data
  
+# NOTE: immich 0.12.0 embeds valkey as a bjw-s "common" library template
+# (templates/valkey.yaml), not as a Bitnami subchart. The old `valkey.master.*`
+# block was silently dropped: it set a 32Mi limit under a 64Mi request (an
+# impossible pair that would have OOMKilled the container) and never reached the
+# pod. The correct path is controllers.main.containers.main.*.
 valkey:
   enabled: true
-  master:
-    persistence:
+  persistence:
+    data:
       annotations:
         k8up.io/backup: 'false'
-    resources:
-      requests:
-        cpu: 10m
-        memory: 64Mi
-      limits:
-        cpu: 1
-        memory: 32Mi
+  controllers:
+    main:
+      containers:
+        main:
+          resources:
+            requests:
+              cpu: 10m
+              memory: 48Mi
+            limits:
+              memory: 256Mi
 
 server:
   enabled: true
@@ -43,7 +51,8 @@ server:
               cpu: 10m
               memory: 256Mi
             limits:
-              cpu: 1
+              # No CPU limit: limits do not change scheduler bin-packing and
+              # only cause CFS throttling. Memory limit is what protects the node.
               memory: 1Gi
   ingress:
     main:
@@ -70,7 +79,6 @@ machine-learning:
               cpu: 10m
               memory: 128Mi
             limits:
-              cpu: 1
               memory: 2Gi
 
 

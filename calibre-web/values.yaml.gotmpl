@@ -1,6 +1,14 @@
 env:
   TZ: America/Edmonton
   DOCKER_MODS: linuxserver/mods:universal-calibre
+
+# k8s-home-lab common lib: resources is top-level (see charts/common/templates/lib/controller/_container.tpl)
+resources:
+  requests:
+    cpu: 20m
+    memory: 128Mi
+  limits:
+    memory: 768Mi
 ingress:
   main:
     enabled: true

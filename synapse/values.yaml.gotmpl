@@ -18,8 +18,10 @@ synapse:
       cpu: 10m
       memory: 128Mi
     limits:
-      cpu: '1'
-      memory: 512Mi
+      # No CPU limit (throttling only, no scheduling effect). Synapse is
+      # memory-hungry on room joins/backfill; 512Mi was the tightest limit in
+      # the cluster for a stateful service.
+      memory: 1Gi
 
 config:
   macaroonSecretKey: {{ requiredEnv "GOATCHAT_SYNAPSE_MACAROON_SECRET_KEY" }}

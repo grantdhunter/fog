@@ -8,9 +8,9 @@ primary:
   resources:
     requests:
       cpu: 50m
-      ephemeral-storage: 50Mi
       memory: 96Mi
     limits:
-      cpu: 1
-      ephemeral-storage: 2Gi
-      memory: 192Mi
+      # ephemeral-storage request removed - see ghost values note; the LimitRange
+      # default/max covers it. Memory limit raised: 192Mi was tight for a 5Gi
+      # dataset with the default key buffer + per-connection buffers.
+      memory: 512Mi

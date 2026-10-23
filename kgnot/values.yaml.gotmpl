@@ -15,11 +15,11 @@ readinessProbe:
 resources:
   requests:
     cpu: 10m
-    ephemeral-storage: 50Mi
+    # Ephemeral storage is intentionally NOT requested: with Talos's single-EPHM
+    # layout every request here competes for the same small filesystem that
+    # holds container images, and the LimitRange default covers us.
     memory: 64Mi
   limits:
-    cpu: 500m
-    ephemeral-storage: 2Gi
     memory: 350Mi
 
 persistence:

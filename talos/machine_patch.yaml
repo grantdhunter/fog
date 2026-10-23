@@ -1,9 +1,29 @@
 machine:
     install:
-        image: ghcr.io/siderolabs/installer:v1.13.0
+        image: ghcr.io/siderolabs/installer:v1.13.12
     kubelet:
         extraArgs:
-          rotate-server-certificates: true 
+          rotate-server-certificates: true
+        # Reserve capacity so the scheduler, not kubelet's eviction manager,
+        # decides how many pods a node carries. Without this, kubelet advertises
+        # the node's full allocatable and only protects the OS/system pods once
+        # memory is already critical (default: memory.available < 100Mi), which
+        # on a ProDesk means OOM-killing workloads. With reservations the node
+        # reports a smaller allocatable, so pods pack to a sustainable density.
+        extraConfig:
+          maxPods: 110
+          systemReserved:
+            cpu: 100m
+            memory: 256Mi
+            ephemeral-storage: 1Gi
+          kubeReserved:
+            cpu: 250m
+            memory: 512Mi
+            ephemeral-storage: 2Gi
+          evictionHard:
+            memory.available: 200Mi
+            nodefs.available: 10%
+            imagefs.available: 15%
     udev:
       rules:
         # set all disks to `none` scheduler (optimal setting for Ceph and ZFS)

@@ -2,6 +2,14 @@ image:
   tag: 2.37.1
 env:
   TZ: America/Edmonton
+
+# k8s-home-lab common lib: resources is top-level
+resources:
+  requests:
+    cpu: 20m
+    memory: 128Mi
+  limits:
+    memory: 1Gi
 ingress:
   main:
     enabled: true
