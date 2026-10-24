@@ -1,0 +1,31 @@
+image: git.incngrnt.ca/grant/hetzner-ddns:v1
+apiToken: {{ requiredEnv "HETZNER_API_KEY" }}
+
+ddnsConfig:
+  params:
+    refresh_interval: 15
+  hetzner:
+    zones:
+      - zone_name: "53ll.ca"
+        records:
+          - name: "@"
+            type: "A"
+            ttl: 300
+      - zone_name: "kgnot.ca"
+        records:
+          - name: "@"
+            type: "A"
+            ttl: 300
+      - zone_name: "incngrnt.ca"
+        records:
+          - name: "@"
+            type: "A"
+            ttl: 300
+          - name: "fog"
+            type: "A"
+            ttl: 300
+      - zone_name: "goatchat.ca"
+        records:
+          - name: "@"
+            type: "A"
+            ttl: 300

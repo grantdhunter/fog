@@ -13,4 +13,4 @@ dependencies:
     repository: git+https://github.com/grantdhunter/postgres-operator@helm?ref=main
     version: 5.7.4
 digest: sha256:1ebf0b11029dbaa1a0637b3f6c43f5fc1126b17725bdafc3d11f5e1561fdf095
-generated: "2026-10-23T15:16:22.856260855-06:00"
+generated: "2026-10-23T22:30:58.214470208-06:00"

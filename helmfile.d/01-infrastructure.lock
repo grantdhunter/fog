@@ -9,6 +9,9 @@ dependencies:
   - name: cert-manager-webhook-hetzner
     repository: https://charts.hetzner.cloud
     version: 0.9.1
+  - name: hetzner-ddns
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.1.0
   - name: rook-ceph
     repository: https://charts.rook.io/release
     version: v1.20.2
@@ -21,5 +24,5 @@ dependencies:
   - name: traefik
     repository: https://traefik.github.io/charts
     version: 42.1.3
-digest: sha256:f5bbd79ab6a4cd54712b29248d0fec2cf22af7f1156e1457c06509a58d50de50
-generated: "2026-10-23T15:16:21.981261083-06:00"
+digest: sha256:838c0db60769222dcb8d3d4c6e512c3fd2f5f4fcb05f582cfe77afb4fdfc1037
+generated: "2026-10-23T22:31:06.137431436-06:00"

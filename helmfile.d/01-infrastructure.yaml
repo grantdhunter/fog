@@ -11,6 +11,8 @@ repositories:
     url: https://charts.jetstack.io
   - name: hcloud
     url: https://charts.hetzner.cloud
+  - name: incngrnt
+    url: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
 
 lockFilePath: ./helmfile.d/01-infrastructure.lock
 releases:
@@ -49,6 +51,12 @@ releases:
     chart: tailscale/tailscale-operator
     values:
       - ../tailscale/values.yaml.gotmpl
+  - name: ddns
+    namespace: ddns
+    createNamespace: true
+    chart: incngrnt/hetzner-ddns
+    values:
+      - ../hetzner-ddns/values.yaml.gotmpl
 
   # storage infrastructure
   - name: rook-ceph
