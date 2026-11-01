@@ -44,7 +44,7 @@ cephClusterSpec:
         cpu: 100m
         memory: 1Gi
       limits:
-        memory: 1Gi
+        memory: 2Gi
     # crashcollector is a DaemonSet (one pod per node) and was previously
     # inherited from the chart with a 100m CPU request, which is a large share
     # of a ProDesk's 4 cores for a pod that only reads /var/lib/rook/crash.
