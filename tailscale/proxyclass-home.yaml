@@ -1,0 +1,26 @@
+---
+# ProxyClass that gives the operator-managed proxy pods (Connector, ingress and
+# LoadBalancer proxies) real resource requests.
+#
+# Without requests these pods are BestEffort: they are invisible to the
+# scheduler when packing nodes, and they are the FIRST thing kubelet evicts under
+# memory pressure - i.e. losing tailscale connectivity exactly when the node is
+# in trouble. The path is confirmed by the chart's own values.yaml comment
+# ("spec.statefulSet.pod.tailscaleContainer.image"); resources sits alongside it.
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: fog
+  namespace: tailscale
+spec:
+  statefulSet:
+    pod:
+      tailscaleContainer:
+        resources:
+          requests:
+            cpu: 10m
+            memory: 48Mi
+          limits:
+            # No CPU limit - it does not influence scheduling, and the proxy is
+            # latency-sensitive. Memory limit is the actual node protection.
+            memory: 256Mi

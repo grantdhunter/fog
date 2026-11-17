@@ -1,0 +1,38 @@
+{{/*
+Per-namespace LimitRange: a floor for pods that declare no resources.
+
+Why this exists: a pod with no requests is BestEffort. It is packed onto a node
+for free (so it inflates how many pods a node "fits") and is the first thing
+kubelet evicts when memory gets tight. A small default request makes those pods
+visible to the scheduler; a default memory limit stops a leak taking the node
+down.
+
+CPU: defaultRequest.cpu is a token amount on purpose - CPU requests are what
+fragment a 4-core node, and most of these pods idle. No default CPU limit is set:
+CPU limits never change bin-packing, they only throttle.
+
+`max` must be >= the largest explicit limit in the namespace or admission will
+reject those pods, so it is set per namespace below.
+*/}}
+{{- range $ns := .Values.namespaces }}
+{{- $req := merge (default dict $ns.request) $.Values.defaults.request }}
+{{- $def := merge (default dict $ns.default) $.Values.defaults.default }}
+{{- $max := merge (default dict $ns.max) $.Values.defaults.max }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: default-resources
+  namespace: {{ $ns.name }}
+spec:
+  limits:
+  - type: Container
+    defaultRequest:
+      cpu: {{ $req.cpu }}
+      memory: {{ $req.memory }}
+    default:
+      memory: {{ $def.memory }}
+    max:
+      cpu: {{ $max.cpu }}
+      memory: {{ $max.memory }}
+{{- end }}

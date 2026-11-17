@@ -1,0 +1,36 @@
+defaults:
+  request:
+    cpu: 10m
+    memory: 48Mi
+  default:
+    memory: 1Gi
+  max:
+    cpu: 2
+    memory: 2Gi
+
+# Only namespaces where every workload's limits are known. A LimitRange `max` is
+# an admission constraint: any pod exceeding it is rejected outright, and a
+# `default` memory limit is applied to any pod (including Jobs and init
+# containers) that does not set one. That makes it unsafe to apply blindly, so
+# the following are deliberately excluded:
+#
+#   rook-ceph     - prepareosd has no memory limit by design; Rook warns an
+#                   external limitRange guardrail can fail OSD provisioning.
+#   datastore     - pgbackrest / pgo jobs burst well above their steady state.
+#   cert-manager, metallb-system, traefik, tailscale, k8up, postgres-operator
+#                 - infrastructure; every container now declares resources, and
+#                   a guardrail here could block a webhook or the CNI.
+namespaces:
+  - name: ghost          # 2 ghost blogs + k8up backups
+  - name: calibre
+  - name: audiobookshelf
+  - name: incngrnt-web
+  - name: goatchat       # synapse (1Gi limit) + matrix-registration + backups
+  - name: gitea          # gitea (1Gi limit) + valkey + backups
+  - name: immich
+    default:
+      # immich's library PVC is 300Gi and the restic backup pod runs here; give
+      # it room rather than letting the default cap a long backup.
+      memory: 2Gi
+    max:
+      memory: 4Gi

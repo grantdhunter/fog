@@ -1,0 +1,5 @@
+apiVersion: v2
+name: resource-defaults
+description: Per-namespace LimitRanges so pods without requests stay visible to the scheduler
+type: application
+version: 0.1.0
