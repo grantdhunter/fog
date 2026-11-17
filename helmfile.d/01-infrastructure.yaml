@@ -14,7 +14,7 @@ repositories:
   - name: incngrnt
     url: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
 
-lockFilePath: ./helmfile.d/01-infrastructure.lock
+lockFilePath: 01-infrastructure.lock
 releases:
   # networking
   - name: metallb

@@ -1,4 +1,4 @@
-version: 1.2.3
+version: 1.8.2
 dependencies:
   - name: audiobookshelf
     repository: https://k8s-home-lab.github.io/helm-charts/
@@ -6,9 +6,6 @@ dependencies:
   - name: calibre-web
     repository: https://k8s-home-lab.github.io/helm-charts/
     version: 9.1.1
-  - name: ghost
-    repository: https://charts.bitnami.com/bitnami
-    version: 25.0.4
   - name: ghost
     repository: https://charts.bitnami.com/bitnami
     version: 25.0.4
@@ -21,23 +18,17 @@ dependencies:
   - name: k8up-backup
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
     version: 0.0.4
-  - name: k8up-backup
-    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.4
-  - name: k8up-backup
-    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.4
-  - name: k8up-backup
-    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
-    version: 0.0.4
   - name: matrix-registration
     repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
     version: 0.1.0
   - name: matrix-synapse
     repository: https://ananace.gitlab.io/charts
-    version: 3.12.41
+    version: 3.12.43
+  - name: silverbullet
+    repository: git+https://git.incngrnt.ca/grant/charts@charts?ref=main
+    version: 0.1.0
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:0b50b4824f2e0cdc37dbaeb87206f86c33c39b900145969a2c75c46edd72a24d
-generated: "2026-10-23T22:31:12.45099225-06:00"
+digest: sha256:a5835a6f5ec23282cc711752c5038ea290719701489abd3dfca8227e3fbd0d1c
+generated: "2026-11-17T17:10:33.853798583-06:00"

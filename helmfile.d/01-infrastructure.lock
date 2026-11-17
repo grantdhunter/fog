@@ -1,4 +1,4 @@
-version: 1.2.3
+version: 1.8.2
 dependencies:
   - name: ceph-csi-drivers
     repository: https://ceph.github.io/ceph-csi-operator
@@ -20,9 +20,9 @@ dependencies:
     version: v1.20.2
   - name: tailscale-operator
     repository: https://pkgs.tailscale.com/helmcharts
-    version: 1.104.2
+    version: 1.104.7
   - name: traefik
     repository: https://traefik.github.io/charts
-    version: 42.2.0
-digest: sha256:7eeb3cb5735eae3ebb7701c6f79c4d13d7f613ca7e20832646b4aa0fafaf8382
-generated: "2026-11-01T12:14:52.257243041-06:00"
+    version: 42.4.1
+digest: sha256:71ca38d0918ba480ca29ed5763b649c5a003205cd9742f6ec8a2402cf724a95c
+generated: "2026-11-17T17:10:24.092426165-06:00"
