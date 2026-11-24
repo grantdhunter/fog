@@ -30,5 +30,5 @@ dependencies:
   - name: static-site
     repository: git+https://github.com/cfpb/static-site@charts?ref=main
     version: 0.1.1
-digest: sha256:a5835a6f5ec23282cc711752c5038ea290719701489abd3dfca8227e3fbd0d1c
-generated: "2026-11-17T17:10:33.853798583-06:00"
+digest: sha256:9a4e6d52bb1a9b91295f533fc8b129c72253ee74b611eb2441c5f8d04fd76d30
+generated: "2026-11-24T13:06:16.271429082-06:00"
